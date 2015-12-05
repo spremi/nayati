@@ -1,7 +1,17 @@
+<!--
+  ~ [Nayati] styles.xml
+  ~
+  ~ (c) 2015 Sanjeev Premi (spremi@ymail.com)
+  ~
+  ~ SPDX-License-Identifier: BSD-3-Clause
+  ~                          (/http://spdx.org/licenses/BSD-3-Clause.html)
+  ~
+  -->
+
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Base.Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
