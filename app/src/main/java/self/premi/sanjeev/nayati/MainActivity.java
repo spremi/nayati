@@ -1,8 +1,22 @@
+/*
+ * [Nayati] MainActivity.java
+ *
+ * Implements main activity of the application
+ *
+ * (c) 2015 Sanjeev Premi (spremi@ymail.com)
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ *                          (http://spdx.org/licenses/BSD-3-Clause.html)
+ *
+ */
+
+
 package self.premi.sanjeev.nayati;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -17,6 +31,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setTitle(R.string.main_actionbar_title);
+        }
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
