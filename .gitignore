@@ -1,3 +1,7 @@
+#
+# Patterns matching files that git should ignore
+#
+
 *.iml
 .gradle
 /local.properties
@@ -6,3 +10,22 @@
 .DS_Store
 /build
 /captures
+
+#
+# Automatic backup files
+#
+*~
+*.swp
+
+#
+# Patch & Diff files
+#
+*.diff
+*.patch
+*.orig
+*.rej
+
+#
+# Specifically, don't ignore these files
+#
+!.gitignore
