@@ -4,4 +4,9 @@
     <string name="main_actionbar_title">nayati</string>
 
     <string name="action_settings">Settings</string>
+
+    <string name="msg_db_created">Database created.</string>
+    <string name="msg_db_already">Database found.</string>
+    <string name="msg_db_failure">Database not found.</string>
+
 </resources>
