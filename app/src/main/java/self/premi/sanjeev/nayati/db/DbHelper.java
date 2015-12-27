@@ -14,6 +14,7 @@
 package self.premi.sanjeev.nayati.db;
 
 import android.content.Context;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -65,6 +66,13 @@ public class DbHelper extends SQLiteOpenHelper {
     @Override
     public synchronized void onCreate(SQLiteDatabase db)
     {
+        try {
+            db.execSQL(DbConst.CREATE_TABLE_ITEMCATS);
+            db.execSQL(DbConst.CREATE_TABLE_ITEMS);
+            db.execSQL(DbConst.CREATE_TABLE_TRACKING);
+        } catch (SQLException e) {
+            // TODO: Handle exception
+        }
     }
 
     @Override
