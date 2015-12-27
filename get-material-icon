@@ -1,0 +1,46 @@
+#!/bin/bash
+#
+# Add an icon from 'material-design-icons' repository.
+# 24dp icons are used.
+#
+
+#
+# Base directory for all projects
+#
+BASE_PROJECTS=${HOME}/gitbase
+
+#
+# 'This' project directory
+#
+DIR_NAYATI=${BASE_PROJECTS}/nayati
+
+#
+# Directory containing material design icons
+#
+DIR_MICONS=${BASE_PROJECTS}/material-design-icons
+
+#
+# Get icon name from user
+#
+group=${1}
+icon=${2}
+
+#
+# Copy icon
+#
+if [ "${group}" != "" ] && [ "${icon}" != "" ]; then
+    echo ""
+    echo ":: Copying ${group}/${icon}"
+    echo ""
+
+    cp ${DIR_MICONS}/${group}/drawable-xxxhdpi/ic_${icon}_white_24dp.png ${DIR_NAYATI}/app/src/main/res/drawable-xxxhdpi/ic_${icon}.png
+    cp ${DIR_MICONS}/${group}/drawable-xxhdpi/ic_${icon}_white_24dp.png  ${DIR_NAYATI}/app/src/main/res/drawable-xxhdpi/ic_${icon}.png
+    cp ${DIR_MICONS}/${group}/drawable-xhdpi/ic_${icon}_white_24dp.png   ${DIR_NAYATI}/app/src/main/res/drawable-xhdpi/ic_${icon}.png
+    cp ${DIR_MICONS}/${group}/drawable-hdpi/ic_${icon}_white_24dp.png    ${DIR_NAYATI}/app/src/main/res/drawable-hdpi/ic_${icon}.png
+    cp ${DIR_MICONS}/${group}/drawable-mdpi/ic_${icon}_white_24dp.png    ${DIR_NAYATI}/app/src/main/res/drawable-mdpi/ic_${icon}.png
+
+else
+    echo ""
+    echo ":: Usage:    ${0} <name-of-group> <name-of-icon>"
+    echo ""
+fi
