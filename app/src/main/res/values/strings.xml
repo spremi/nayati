@@ -9,4 +9,6 @@
     <string name="msg_db_already">Database found.</string>
     <string name="msg_db_failure">Database not found.</string>
 
+    <string name="title_activity_item_add">nayati: Add an item</string>
+
 </resources>
