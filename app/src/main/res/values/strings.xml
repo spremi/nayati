@@ -21,4 +21,6 @@
 
     <string name="title_activity_item_list">nayati: View items</string>
 
+    <string name="title_activity_item_detail">nayati: Item Details</string>
+
 </resources>
