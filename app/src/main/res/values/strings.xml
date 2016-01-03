@@ -16,4 +16,7 @@
     <string name="item_add_hint_category">Item Category</string>
     <string name="item_add_hint_add">Add</string>
 
+    <string name="item_add_success">Item added.</string>
+    <string name="item_add_failure">Unable to add item.</string>
+
 </resources>

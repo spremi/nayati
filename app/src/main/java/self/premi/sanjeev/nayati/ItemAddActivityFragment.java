@@ -13,6 +13,7 @@
 
 package self.premi.sanjeev.nayati;
 
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -20,12 +21,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import self.premi.sanjeev.nayati.db.DaoItemCategory;
+import self.premi.sanjeev.nayati.db.DaoTrackItem;
 import self.premi.sanjeev.nayati.db.DbConst;
 import self.premi.sanjeev.nayati.model.ItemCategory;
 
@@ -43,14 +47,34 @@ public class ItemAddActivityFragment
     private DaoItemCategory daoItemCat;
 
     /**
+     * DAO for items being tracked
+     */
+    private DaoTrackItem daoTrackItem;
+
+    /**
      * List of item categories
      */
     private List<ItemCategory> itemCats;
 
     /**
+     * Edit control for tracking number
+     */
+    private EditText editTrackNum;
+
+    /**
+     * Edit control for item name
+     */
+    private EditText editItemName;
+
+    /**
      * Spinner showing item categories
      */
     private Spinner spinItemCat;
+
+    /**
+     * Button for adding an item
+     */
+    private Button btnAddItem;
 
 
     public ItemAddActivityFragment() {
@@ -61,6 +85,7 @@ public class ItemAddActivityFragment
         super.onCreate(savedInstanceState);
 
         daoItemCat = new DaoItemCategory(this.getContext());
+        daoTrackItem = new DaoTrackItem(this.getContext());
     }
 
     @Override
@@ -68,7 +93,11 @@ public class ItemAddActivityFragment
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_item_add, container, false);
 
+        editTrackNum = (EditText) v.findViewById(R.id.item_add_edit_track_num);
+        editItemName = (EditText) v.findViewById(R.id.item_add_edit_track_name);
+
         setupSpinItemCategory(v);
+        setupButtonAdd(v);
 
         return v;
     }
@@ -111,6 +140,63 @@ public class ItemAddActivityFragment
         spinItemCat.setOnItemSelectedListener(this);
     }
 
+
+    /*
+     * Setup button to add an item
+     */
+    private void setupButtonAdd(View v) {
+        btnAddItem = (Button) v.findViewById(R.id.item_add_btn_add_item);
+
+        btnAddItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String trackNum = editTrackNum.getText().toString();
+                String itemName = editItemName.getText().toString();
+                String itemCat  = spinItemCat.getSelectedItem().toString();
+
+                long catId = -1;
+
+                /*
+                 * Get id of selected category
+                 */
+                for (int i = 0; (catId == -1) && (i < itemCats.size()); i++) {
+                    if (itemCats.get(i).getName().equals(itemCat)) {
+                        catId = itemCats.get(i).getId();
+                    }
+                }
+
+                /*
+                 * Add item to database
+                 */
+                daoTrackItem.open(DbConst.RW_MODE);
+                long itemId = daoTrackItem.add(trackNum, itemName, catId);
+                daoTrackItem.close();
+
+                if (itemId == -1) {
+                    Snackbar.make(v,
+                            R.string.item_add_failure, Snackbar.LENGTH_SHORT)
+                                .setAction("Action", null).show();
+                } else {
+                    Snackbar.make(v,
+                            R.string.item_add_success, Snackbar.LENGTH_SHORT)
+                            .setAction("Action", null).show();
+                }
+
+                /*
+                 * Clear the form.
+                 * Don't change category spinner - assuming it would be immediately
+                 * used for adding next item (if any).
+                 */
+                editTrackNum.setText("");
+                editTrackNum.clearFocus();
+
+                editItemName.setText("");
+                editItemName.clearFocus();
+
+                spinItemCat.clearFocus();
+            }
+        });
+    }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
