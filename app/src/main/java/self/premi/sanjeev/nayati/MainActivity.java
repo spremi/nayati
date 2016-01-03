@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
                 /*
                  * Create intent to start 'add' activity
                  */
-                Intent i = new Intent(MainActivity.this, ItemAddActivity.class);
+                Intent i = new Intent(MainActivity.this, ItemListActivity.class);
 
                 startActivity(i);
             }
