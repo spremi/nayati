@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ [Nayati] card_track_item.xml
+  ~
+  ~ Defines layout for a card corresponding to an item being tracked.
+  ~
+  ~ (c) 2015 Sanjeev Premi (spremi@ymail.com)
+  ~
+  ~ SPDX-License-Identifier: BSD-3-Clause
+  ~                          (http://spdx.org/licenses/BSD-3-Clause.html)
+  ~
+  -->
+
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.CardView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardUseCompatPadding="true"
+        app:cardElevation="4dp" >
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+
+            <TextView
+                android:id="@+id/item_list_text_category"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.1"
+                android:layout_margin="4dp"
+                android:gravity="center_vertical|center_horizontal"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:background="@color/BgItemCategory"
+                android:textColor="@color/FgItemCategory"
+                android:text="@string/item_list_category" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:padding="4dp">
+
+                <TextView
+                    android:id="@+id/item_list_text_track_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/item_list_track_num" />
+
+                <TextView
+                    android:id="@+id/item_list_text_track_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="@string/item_list_name" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/item_list_text_track_state"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="0.1"
+                android:gravity="center_vertical|center_horizontal" />
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

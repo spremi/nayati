@@ -21,6 +21,10 @@
 
     <string name="title_activity_item_list">nayati: View items</string>
 
+    <string name="item_list_track_num">TRACKING NUMBER</string>
+    <string name="item_list_name">ITEM NAME</string>
+    <string name="item_list_category">C</string>
+
     <string name="title_activity_item_detail">nayati: Item Details</string>
 
 </resources>
