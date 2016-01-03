@@ -19,4 +19,6 @@
     <string name="item_add_success">Item added.</string>
     <string name="item_add_failure">Unable to add item.</string>
 
+    <string name="title_activity_item_list">nayati: View items</string>
+
 </resources>
