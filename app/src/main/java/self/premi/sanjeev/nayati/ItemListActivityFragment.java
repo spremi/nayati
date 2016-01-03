@@ -21,6 +21,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.List;
+
+import self.premi.sanjeev.nayati.db.DaoTrackItem;
+import self.premi.sanjeev.nayati.db.DbConst;
+import self.premi.sanjeev.nayati.model.TrackItem;
+
 
 /**
  * Fragment to view list of items being tracked.
@@ -36,6 +42,21 @@ public class ItemListActivityFragment extends Fragment {
      * Linear layout manager for the recycler view
      */
     LinearLayoutManager llm = null;
+
+    /**
+     * Adapter for recycler view
+     */
+    private ItemListRvAdapter rva = null;
+
+    /**
+     * DAO for items being tracked
+     */
+    private DaoTrackItem daoTrackItem = null;
+
+    /**
+     * List of items being tracked
+     */
+    List<TrackItem> items = null;
 
 
     public ItemListActivityFragment() {
@@ -58,6 +79,22 @@ public class ItemListActivityFragment extends Fragment {
             rv.setHasFixedSize(true);
         }
 
+        //
+        // Read list of items from database
+        //
+        if (daoTrackItem == null) {
+            daoTrackItem = new DaoTrackItem(getContext());
+        }
+
+        if (items == null) {
+            daoTrackItem.open(DbConst.RO_MODE);
+            items = daoTrackItem.list();
+            daoTrackItem.close();
+        }
+
+        rva = new ItemListRvAdapter(items);
+
+        rv.setAdapter(rva);
         rv.setLayoutManager(llm);
 
         return v;
