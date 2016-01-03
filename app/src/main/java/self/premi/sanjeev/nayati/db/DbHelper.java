@@ -70,6 +70,10 @@ public class DbHelper extends SQLiteOpenHelper {
             db.execSQL(DbConst.CREATE_TABLE_ITEMCATS);
             db.execSQL(DbConst.CREATE_TABLE_ITEMS);
             db.execSQL(DbConst.CREATE_TABLE_TRACKING);
+
+            for (int i = 0; i < DbConst.INIT_ITEM_CATEGORIES.length; i++) {
+                db.execSQL(DbConst.INIT_ITEM_CATEGORIES[i]);
+            }
         } catch (SQLException e) {
             // TODO: Handle exception
         }

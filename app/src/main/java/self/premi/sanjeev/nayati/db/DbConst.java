@@ -111,6 +111,23 @@ public interface DbConst {
 
                     ");";
 
+
+    /*
+     * SQL statements to initialize item categories
+     */
+    String INIT_ITEM_CATEGORIES[] = {
+            "INSERT INTO " + TABLE_ITEMCATS + "('" +
+                    ITEMCAT_NAME + "','" +
+                    ITEMCAT_SYMBOL + "') VALUES('Gift', 'G');",
+            "INSERT INTO " + TABLE_ITEMCATS + "('" +
+                    ITEMCAT_NAME + "','" +
+                    ITEMCAT_SYMBOL + "') VALUES('Personal', 'P');",
+            "INSERT INTO " + TABLE_ITEMCATS + "('" +
+                    ITEMCAT_NAME + "','" +
+                    ITEMCAT_SYMBOL + "') VALUES('Documents', 'D');"
+    };
+
+
     /*
      * Typical states of an item
      */
