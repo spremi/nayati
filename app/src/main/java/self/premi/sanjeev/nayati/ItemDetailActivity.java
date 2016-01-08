@@ -53,4 +53,8 @@ public class ItemDetailActivity extends AppCompatActivity {
         });
     }
 
+
+    public String getTrackNum() {
+        return trackNum;
+    }
 }
