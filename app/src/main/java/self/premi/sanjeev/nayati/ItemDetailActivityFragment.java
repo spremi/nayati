@@ -22,6 +22,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.List;
+
+import self.premi.sanjeev.nayati.db.DaoTrackInfo;
+import self.premi.sanjeev.nayati.db.DaoTrackItem;
+import self.premi.sanjeev.nayati.db.DbConst;
+import self.premi.sanjeev.nayati.model.TrackInfo;
+import self.premi.sanjeev.nayati.model.TrackItem;
+
 
 /**
  * Fragment to view detailed information for an item being tracked.
@@ -39,9 +47,34 @@ public class ItemDetailActivityFragment extends Fragment {
     LinearLayoutManager llm = null;
 
     /**
+     * Adapter for recycler view
+     */
+    private ItemDetailRvAdapter rva = null;
+
+    /**
      * Tracking number of the item
      */
     private String trackNum;
+
+    /**
+     * DAO for items being tracked
+     */
+    private DaoTrackItem daoTrackItem = null;
+
+    /**
+     * DAO for tracking information for an item
+     */
+    private DaoTrackInfo daoTrackInfo = null;
+
+    /**
+     * Items being tracked
+     */
+    private TrackItem item = null;
+
+    /**
+     * Tracking information related to the item
+     */
+    private List<TrackInfo> info = null;
 
 
     public ItemDetailActivityFragment() {
@@ -64,6 +97,33 @@ public class ItemDetailActivityFragment extends Fragment {
             rv.setHasFixedSize(true);
         }
 
+        //
+        // Fetch item from database
+        //
+        if (daoTrackItem == null) {
+            daoTrackItem = new DaoTrackItem(getContext());
+        }
+
+        daoTrackItem.open(DbConst.RO_MODE);
+        item = daoTrackItem.get(trackNum);
+        daoTrackItem.close();
+
+        //
+        // Read tracking information related to 'item' from database
+        //
+        if (daoTrackInfo == null) {
+            daoTrackInfo = new DaoTrackInfo(getContext());
+        }
+
+        daoTrackInfo.open(DbConst.RO_MODE);
+
+        info = daoTrackInfo.list(item.getId());
+
+        daoTrackInfo.close();
+
+        rva = new ItemDetailRvAdapter(info);
+
+        rv.setAdapter(rva);
         rv.setLayoutManager(llm);
 
         return v;
