@@ -72,7 +72,8 @@ public class ItemListRvAdapter
      * Defines view holder
      */
     public static class ItemListHolder
-            extends RecyclerView.ViewHolder {
+            extends RecyclerView.ViewHolder
+            implements View.OnClickListener {
 
         private TrackItem item;
 
@@ -87,6 +88,8 @@ public class ItemListRvAdapter
 
             trackNum = (TextView) iv.findViewById(R.id.item_list_text_track_num);
             itemName = (TextView) iv.findViewById(R.id.item_list_text_track_name);
+
+            itemView.setOnClickListener(this);
         }
 
 
@@ -98,6 +101,11 @@ public class ItemListRvAdapter
 
             trackNum.setText(item.getTrackNum());
             itemName.setText(item.getName());
+        }
+
+
+        @Override
+        public void onClick(View v) {
         }
     }
 }
