@@ -12,6 +12,7 @@
 
 package self.premi.sanjeev.nayati;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -21,9 +22,23 @@ import android.view.View;
 
 public class ItemDetailActivity extends AppCompatActivity {
 
+    /**
+     * Tracking number of the item
+     */
+    private String trackNum;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        /*
+         * Get our intent and extract the tracking number
+         */
+        Intent i = getIntent();
+
+        trackNum = i.getExtras().getString("trackNum");
+
         setContentView(R.layout.activity_item_detail);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
