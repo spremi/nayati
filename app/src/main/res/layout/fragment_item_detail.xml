@@ -29,7 +29,7 @@
         android:id="@+id/item_detail_text_track_num"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.1"
+        android:layout_weight="0.05"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/item_list_track_num" />
 
@@ -37,14 +37,14 @@
         android:id="@+id/item_detail_text_track_name"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.1"
+        android:layout_weight="0.05"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/item_list_name" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.8">
+        android:layout_weight="0.9">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_item_detail"

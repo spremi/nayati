@@ -6,4 +6,8 @@
 
     <color name="BgItemCategory">#03a9f4</color>
     <color name="FgItemCategory">#ffffff</color>
+
+    <color name="BgInfo">#E1F5FE</color>
+    <color name="BgInfoDate">#0288D1</color>
+    <color name="FgInfoDate">#ffffff</color>
 </resources>
