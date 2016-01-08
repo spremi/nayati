@@ -13,6 +13,7 @@
 
 package self.premi.sanjeev.nayati;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -106,6 +107,13 @@ public class ItemListRvAdapter
 
         @Override
         public void onClick(View v) {
+            if (item != null) {
+                Intent i = new Intent(v.getContext(), ItemDetailActivity.class);
+
+                i.putExtra("trackNum", item.getTrackNum());
+
+                v.getContext().startActivity(i);
+            }
         }
     }
 }
