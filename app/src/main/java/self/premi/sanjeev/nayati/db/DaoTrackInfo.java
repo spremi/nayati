@@ -148,7 +148,8 @@ public class DaoTrackInfo extends DbAccess {
             c = db.query(DbConst.TABLE_TRACKING,
                     null,
                     DbConst.TRACK_ITEMID + " = " + itemId,
-                    null, null, null, null);
+                    null, null, null,
+                    DbConst.TRACK_TIME + " DESC");
 
             db.setTransactionSuccessful();
 
