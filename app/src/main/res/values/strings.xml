@@ -35,4 +35,7 @@
     <string name="item_detail_label_mcat">Mail Category</string>
     <string name="item_detail_empty">"EMPTY"</string>
 
+    <string name="item_detail_menu_refresh">Refresh</string>
+    <string name="item_detail_menu_delete">Delete</string>
+
 </resources>
