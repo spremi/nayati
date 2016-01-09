@@ -14,6 +14,7 @@
 package self.premi.sanjeev.nayati;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -26,6 +27,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import self.premi.sanjeev.nayati.db.DaoTrackInfo;
@@ -198,5 +203,158 @@ public class ItemDetailActivityFragment extends Fragment {
      * Refresh details of current item
      */
     private void actionItemRefresh() {
+        new GetDetails().execute(trackNum);
+    }
+
+
+    /**
+     * Asynchronous task to get tracking information from IPS Web
+     */
+    private class GetDetails extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... params) {
+            IpsWeb web = new IpsWeb();
+
+            if (web.request(params[0])) {
+                return web.read();
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+
+            //
+            // No information?
+            //
+            if (s.contains("No information")) {
+                // TODO
+                return;
+            }
+
+            List<TrackInfo> fresh = parseIpsResponse(s);
+
+
+            daoTrackInfo.open(DbConst.RW_MODE);
+
+            //
+            // The lists have been reversed.
+            // Compare contents backwards.
+            //
+
+            int i = info.size()  - 1;
+            int j = fresh.size() - 1;
+
+            //
+            // Update existing information
+            //
+            for (; (i >= 0) && (j >= 0); i--, j--) {
+                if (!info.get(i).matches(fresh.get(j))) {
+                    fresh.get(j).setId(info.get(i).getId());
+
+                    daoTrackInfo.update(fresh.get(j));
+                }
+            }
+
+            //
+            // Add 'new' data to database.
+            //
+            for (; j >=0 ; j--) {
+                daoTrackInfo.add(fresh.get(j));
+            }
+
+            daoTrackInfo.close();
+        }
+
+
+        /**
+         * Parse response from IPS Web Tracking into
+         */
+        private List<TrackInfo> parseIpsResponse(String s) {
+            List<TrackInfo> parseItems = new ArrayList<>();
+
+            StringBuilder sb = new StringBuilder(s);
+
+            //
+            // Tracking information is contained in the 'deepest' table
+            // Remove extra content
+            //
+            String tableStart = "<table";
+            String tableEnd   = "</table>";
+
+            sb.delete(0, sb.lastIndexOf(tableStart));
+            sb.delete(sb.indexOf(tableEnd) + tableEnd.length(), sb.length());
+
+            String rowStart = "<tr";
+            String rowEnd   = "</tr>";
+
+            //
+            // Date formats for conversion.
+            //
+            SimpleDateFormat fmtInp = new SimpleDateFormat("M/d/yyyy h:m:s aa");
+            SimpleDateFormat fmtOut = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+            String row;
+
+            int pos = 0;
+            int len = sb.lastIndexOf(rowEnd);
+
+            while (pos < len) {
+                //
+                // Get a row from table
+                //
+                int start = sb.indexOf(rowStart, pos);
+                int end   = sb.indexOf(rowEnd, pos);
+
+                row = sb.substring(start, end);
+
+                //
+                // Remove all comments in the row
+                //
+                row = row.replaceAll("<!--.*?-->", "");
+
+                //
+                // Remove opening and closing tags - tr, th, td
+                //
+                row = row.replaceAll("<t[rdh]\\s.*?>", "|");
+                row = row.replaceAll("</t[rdh]>", "|");
+
+                //
+                // Trim multiple occurrences of delimiter
+                //
+                row = row.replaceAll("\\|+(\\s*)?\\|", "|");
+
+                //
+                // Skip the 'header' rows
+                //
+                if ((row.indexOf("new search") == -1) &&
+                    (row.indexOf("Local Date and Time") == -1)) {
+                    String[] parts = row.split("\\|");
+
+                    //
+                    // Convert date format
+                    //
+                    try {
+                        parts[1] = fmtOut.format(fmtInp.parse(parts[1]));
+                    }
+                    catch (ParseException e) {
+                    }
+
+                    parseItems.add(new TrackInfo(parts[1], parts[2], parts[3], parts[4],
+                                                    parts[6], parts[5], item.getId()));
+                }
+
+                pos = end + rowEnd.length();
+            }
+
+            if (parseItems.size() > 1) {
+                Collections.reverse(parseItems);
+            }
+
+            return parseItems;
+        }
     }
 }
