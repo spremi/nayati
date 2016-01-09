@@ -21,6 +21,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -76,6 +77,16 @@ public class ItemDetailActivityFragment extends Fragment {
      */
     private List<TrackInfo> info = null;
 
+    /**
+     * Text view - Tracking number
+     */
+    private TextView textTrackNum = null;
+
+    /**
+     * Text view - Item Name
+     */
+    private TextView textItemName = null;
+
 
     public ItemDetailActivityFragment() {
     }
@@ -125,6 +136,12 @@ public class ItemDetailActivityFragment extends Fragment {
 
         rv.setAdapter(rva);
         rv.setLayoutManager(llm);
+
+        textTrackNum = (TextView) v.findViewById(R.id.item_detail_text_track_num);
+        textItemName = (TextView) v.findViewById(R.id.item_detail_text_track_name);
+
+        textTrackNum.setText(trackNum);
+        textItemName.setText(item.getName());
 
         return v;
     }
