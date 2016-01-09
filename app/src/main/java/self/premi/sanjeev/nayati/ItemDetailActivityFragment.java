@@ -19,6 +19,9 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -89,6 +92,7 @@ public class ItemDetailActivityFragment extends Fragment {
 
 
     public ItemDetailActivityFragment() {
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -152,5 +156,47 @@ public class ItemDetailActivityFragment extends Fragment {
         super.onAttach(context);
 
         trackNum = ((ItemDetailActivity) getActivity()).getTrackNum();
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        //
+        // Inflate the menu and add to the action bar
+        //
+        inflater.inflate(R.menu.menu_item_detail, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+        if (id == R.id.item_detail_action_delete) {
+            actionItemDelete();
+
+            return true;
+        }
+        else if (id == R.id.item_detail_action_refresh) {
+            actionItemRefresh();
+
+            return true;
+        }
+        else {
+            return super.onOptionsItemSelected(item);
+        }
+    }
+
+
+    /**
+     * Delete the current item and its history
+     */
+    private void actionItemDelete() {
+    }
+
+
+    /**
+     * Refresh details of current item
+     */
+    private void actionItemRefresh() {
     }
 }
