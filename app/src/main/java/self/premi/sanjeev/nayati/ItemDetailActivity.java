@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.View;
 
 public class ItemDetailActivity extends AppCompatActivity {
@@ -52,6 +53,17 @@ public class ItemDetailActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //
+        // Inflate the menu and add to the action bar
+        //
+        getMenuInflater().inflate(R.menu.menu_item_detail, menu);
+
+        return true;
     }
 
 
