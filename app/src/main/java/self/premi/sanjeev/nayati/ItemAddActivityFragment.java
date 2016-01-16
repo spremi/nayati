@@ -177,6 +177,11 @@ public class ItemAddActivityFragment
                             R.string.item_add_failure, Snackbar.LENGTH_SHORT)
                                 .setAction("Action", null).show();
                 } else {
+                    /*
+                     * Update change flag in the activity
+                     */
+                    ((ItemAddActivity) getActivity()).setDbChanged();
+
                     Snackbar.make(v,
                             R.string.item_add_success, Snackbar.LENGTH_SHORT)
                             .setAction("Action", null).show();
