@@ -51,6 +51,7 @@ public interface DbConst {
     String ITEM_NAME            = "name";               // Item name
     String ITEM_ICAT            = "icat";               // Item category
     String ITEM_STATE           = "state";              // Item state
+    String ITEM_SYNC            = "sync";               // Item sync time
 
     /*
      * Table containing tracking information
@@ -90,6 +91,7 @@ public interface DbConst {
                     ITEM_NAME       + " TEXT," +
                     ITEM_ICAT       + " INTEGER," +
                     ITEM_STATE      + " INTEGER," +
+                    ITEM_SYNC       + " TEXT," +
 
                     "FOREIGN KEY(" + ITEM_ICAT + ") " +
                     "REFERENCES " + TABLE_ITEMCATS + "(" + ITEMCAT_ID  + ")" +
