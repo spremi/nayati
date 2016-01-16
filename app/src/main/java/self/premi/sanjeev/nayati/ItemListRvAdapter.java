@@ -70,6 +70,18 @@ public class ItemListRvAdapter
 
 
     /**
+     * Update list of items
+     */
+    public void refresh(List<TrackItem> items) {
+        this.items.clear();
+
+        this.items = items;
+
+        notifyDataSetChanged();
+    }
+
+
+    /**
      * Defines view holder
      */
     public static class ItemListHolder
