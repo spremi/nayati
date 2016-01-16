@@ -99,4 +99,18 @@ public class ItemListActivityFragment extends Fragment {
 
         return v;
     }
+
+
+    /**
+     * Read list of items from database & notify adapter.
+     */
+    public void refresh() {
+        items.clear();
+
+        daoTrackItem.open(DbConst.RO_MODE);
+        items = daoTrackItem.list();
+        daoTrackItem.close();
+
+        rva.refresh(items);
+    }
 }
