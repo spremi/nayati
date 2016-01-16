@@ -67,6 +67,18 @@ public class ItemDetailRvAdapter
 
 
     /**
+     * Update info
+     */
+    public void refresh(List<TrackInfo> info) {
+        this.items.clear();
+
+        this.items = info;
+
+        notifyDataSetChanged();
+    }
+
+
+    /**
      * Defines view holder
      */
     public static class InfoListHolder
