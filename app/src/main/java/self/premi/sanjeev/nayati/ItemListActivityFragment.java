@@ -13,6 +13,7 @@
 
 package self.premi.sanjeev.nayati;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -31,7 +32,9 @@ import self.premi.sanjeev.nayati.model.TrackItem;
 /**
  * Fragment to view list of items being tracked.
  */
-public class ItemListActivityFragment extends Fragment {
+public class ItemListActivityFragment
+        extends Fragment
+        implements ItemClickListener {
 
     /**
      * Recycler view for the activity.
@@ -93,6 +96,7 @@ public class ItemListActivityFragment extends Fragment {
         }
 
         rva = new ItemListRvAdapter(items);
+        rva.setItemClickListener(this);
 
         rv.setAdapter(rva);
         rv.setLayoutManager(llm);
@@ -112,5 +116,20 @@ public class ItemListActivityFragment extends Fragment {
         daoTrackItem.close();
 
         rva.refresh(items);
+    }
+
+
+    /**
+     * Handle item click event
+     */
+    public void onItemClick(int pos) {
+        /*
+         * Create intent to start 'detail' activity
+         */
+        Intent i = new Intent(getActivity(), ItemDetailActivity.class);
+
+        i.putExtra("trackNum", items.get(pos).getTrackNum());
+
+        getActivity().startActivityForResult(i, ItemListActivity.REQUEST_ITEM_DETAIL);
     }
 }

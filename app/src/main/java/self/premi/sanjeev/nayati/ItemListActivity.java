@@ -28,6 +28,11 @@ public class ItemListActivity extends AppCompatActivity {
      */
     public static final int REQUEST_ITEM_ADD = 101;
 
+    /**
+     * Request code for 'ItemDetail' activity
+     */
+    public static final int REQUEST_ITEM_DETAIL = 102;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
