@@ -26,6 +26,11 @@ public class ItemDetailActivity extends AppCompatActivity {
      */
     private String trackNum;
 
+    /**
+     * Flag indicates if database was changed in the fragment.
+     */
+    private boolean dbChanged = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,5 +62,10 @@ public class ItemDetailActivity extends AppCompatActivity {
 
     public String getTrackNum() {
         return trackNum;
+    }
+
+
+    public void setDbChanged() {
+        dbChanged = true;
     }
 }
