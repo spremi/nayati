@@ -13,6 +13,7 @@
 
 package self.premi.sanjeev.nayati;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -42,9 +43,24 @@ public class ItemAddActivity extends AppCompatActivity {
                 /*
                  * Return to previous activity
                  */
+                Intent ri = new Intent();
+                ri.putExtra("refresh", dbChanged);
+
+                setResult(RESULT_CANCELED, ri);
                 finish();
             }
         });
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        Intent ri = new Intent();
+        ri.putExtra("refresh", dbChanged);
+
+        setResult(RESULT_CANCELED, ri);
+
+        super.onBackPressed();
     }
 
 
