@@ -16,6 +16,7 @@ package self.premi.sanjeev.nayati;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -33,7 +34,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import self.premi.sanjeev.nayati.db.DaoTrackInfo;
 import self.premi.sanjeev.nayati.db.DaoTrackItem;
@@ -251,7 +254,39 @@ public class ItemDetailActivityFragment extends Fragment {
      * Refresh details of current item
      */
     private void actionItemRefresh() {
-        new GetDetails().execute(trackNum);
+        boolean allow = false;
+
+        String prevSync = item.getSync();
+
+        if (prevSync.equals("")) {
+            //
+            // Never sync'd
+            //
+            allow = true;
+        } else {
+            try {
+                Date curr = new Date();
+                Date last = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").parse(prevSync);
+
+                long minutes = TimeUnit.MILLISECONDS.toMinutes(curr.getTime() - last.getTime());
+
+                //
+                // Don't refresh for few hours...
+                //
+                if (minutes > 240) allow = true;
+            }
+            catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (allow) {
+            new GetDetails().execute(trackNum);
+        } else {
+            Snackbar.make(getView(), R.string.msg_refresh_wait, Snackbar.LENGTH_SHORT)
+                    .setAction("Action", null)
+                    .show();
+        }
     }
 
 
@@ -329,6 +364,15 @@ public class ItemDetailActivityFragment extends Fragment {
             }
 
             daoTrackInfo.close();
+
+            //
+            // Update sync time for the item
+            //
+            item.setSync(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+
+            daoTrackItem.open(DbConst.RW_MODE);
+            daoTrackItem.update(item);
+            daoTrackItem.close();
 
             //
             // Refresh the view
