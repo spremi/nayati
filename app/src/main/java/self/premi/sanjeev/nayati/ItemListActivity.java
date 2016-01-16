@@ -62,7 +62,9 @@ public class ItemListActivity extends AppCompatActivity {
 
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == REQUEST_ITEM_ADD) {
+        if ((requestCode == REQUEST_ITEM_ADD) ||
+            (requestCode == REQUEST_ITEM_DETAIL)) {
+
             if (resultCode == RESULT_CANCELED) {
                 updateFlag = data.getBooleanExtra("refresh", false);
             }
