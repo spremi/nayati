@@ -22,6 +22,12 @@ import android.view.View;
 
 public class ItemAddActivity extends AppCompatActivity {
 
+    /**
+     * Flag indicates if database was changed in the fragment.
+     */
+    private boolean dbChanged = false;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,4 +47,8 @@ public class ItemAddActivity extends AppCompatActivity {
         });
     }
 
+
+    public void setDbChanged() {
+        dbChanged = true;
+    }
 }
