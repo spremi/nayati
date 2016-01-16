@@ -53,6 +53,22 @@ public class ItemListActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        boolean updateFlag = false;
+
         super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_ITEM_ADD) {
+            if (resultCode == RESULT_CANCELED) {
+                updateFlag = data.getBooleanExtra("refresh", false);
+            }
+        }
+
+        if (updateFlag) {
+            ItemListActivityFragment f = (ItemListActivityFragment)
+                                            getSupportFragmentManager()
+                                                    .findFragmentById(R.id.fragment_item_list);
+
+            f.refresh();
+        }
     }
 }
