@@ -13,7 +13,6 @@
 
 package self.premi.sanjeev.nayati;
 
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,12 +35,22 @@ public class ItemListRvAdapter
      */
     private List<TrackItem> items;
 
+    /**
+     * Listener for the click event on items in the list.
+     * Must be static to as it would be called from ItemListHolder.onClick()
+     */
+    private static ItemClickListener itemClickListener = null;
+
 
     /**
      * Constructor
      */
     public ItemListRvAdapter(List<TrackItem> items) {
         this.items = items;
+    }
+
+    public void setItemClickListener(ItemClickListener listener) {
+        itemClickListener = listener;
     }
 
 
@@ -119,12 +128,8 @@ public class ItemListRvAdapter
 
         @Override
         public void onClick(View v) {
-            if (item != null) {
-                Intent i = new Intent(v.getContext(), ItemDetailActivity.class);
-
-                i.putExtra("trackNum", item.getTrackNum());
-
-                v.getContext().startActivity(i);
+            if (itemClickListener != null) {
+                itemClickListener.onItemClick(getLayoutPosition());
             }
         }
     }
