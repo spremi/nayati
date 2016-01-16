@@ -256,6 +256,20 @@ public class ItemDetailActivityFragment extends Fragment {
 
 
     /**
+     * Read tracking information from database & notify adapter.
+     */
+    public void refresh() {
+        info.clear();
+
+        daoTrackInfo.open(DbConst.RO_MODE);
+        info = daoTrackInfo.list(item.getId());
+        daoTrackInfo.close();
+
+        rva.refresh(info);
+    }
+
+
+    /**
      * Asynchronous task to get tracking information from IPS Web
      */
     private class GetDetails extends AsyncTask<String, Void, String> {
@@ -315,6 +329,11 @@ public class ItemDetailActivityFragment extends Fragment {
             }
 
             daoTrackInfo.close();
+
+            //
+            // Refresh the view
+            //
+            refresh();
         }
 
 
