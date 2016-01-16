@@ -23,6 +23,12 @@ import android.view.View;
 
 public class ItemListActivity extends AppCompatActivity {
 
+    /**
+     * Request code for 'ItemAdd' activity
+     */
+    public static final int REQUEST_ITEM_ADD = 101;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,9 +45,14 @@ public class ItemListActivity extends AppCompatActivity {
                  */
                 Intent i = new Intent(ItemListActivity.this, ItemAddActivity.class);
 
-                startActivity(i);
+                startActivityForResult(i, REQUEST_ITEM_ADD);
             }
         });
     }
 
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 }
