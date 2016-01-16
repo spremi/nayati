@@ -38,7 +38,9 @@ public class DaoTrackItem extends DbAccess {
     /**
      * Adds an item to be tracked.
      *
-     * When item is being added, the state is expected to be unknown.
+     * When item is being added:
+     *  - the state is expected to be unknown.
+     *  - the sync time is empty.
      */
     public long add(String tnum, String name, long cat)
     {
@@ -50,6 +52,7 @@ public class DaoTrackItem extends DbAccess {
         cv.put(DbConst.ITEM_NAME, name);
         cv.put(DbConst.ITEM_ICAT, cat);
         cv.put(DbConst.ITEM_STATE, DbConst.ITEM_STATE_NONE);
+        cv.put(DbConst.ITEM_SYNC, "");
 
         db.beginTransaction();
         try {
@@ -100,6 +103,7 @@ public class DaoTrackItem extends DbAccess {
         cv.put(DbConst.ITEM_NAME, item.getName());
         cv.put(DbConst.ITEM_ICAT, item.getCategory());
         cv.put(DbConst.ITEM_STATE, item.getState());
+        cv.put(DbConst.ITEM_SYNC, item.getSync());
 
         db.beginTransaction();
         try {
@@ -139,8 +143,9 @@ public class DaoTrackItem extends DbAccess {
                         String name = c.getString(c.getColumnIndex(DbConst.ITEM_NAME));
                         long cat    = c.getLong(c.getColumnIndex(DbConst.ITEM_ICAT));
                         int state   = c.getInt(c.getColumnIndex(DbConst.ITEM_STATE));
+                        String sync = c.getString(c.getColumnIndex(DbConst.ITEM_SYNC));
 
-                        items.add(new TrackItem(id, tnum, name, cat, state));
+                        items.add(new TrackItem(id, tnum, name, cat, state, sync));
                     } while (c.moveToNext());
                 }
             }
@@ -178,8 +183,9 @@ public class DaoTrackItem extends DbAccess {
                     String name = c.getString(c.getColumnIndex(DbConst.ITEM_NAME));
                     long cat    = c.getLong(c.getColumnIndex(DbConst.ITEM_ICAT));
                     int state   = c.getInt(c.getColumnIndex(DbConst.ITEM_ICAT));
+                    String sync = c.getString(c.getColumnIndex(DbConst.ITEM_SYNC));
 
-                    item = new TrackItem(id, tnum, name, cat, state);
+                    item = new TrackItem(id, tnum, name, cat, state, sync);
                 }
             }
         }
