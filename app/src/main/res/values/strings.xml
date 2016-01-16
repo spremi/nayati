@@ -39,4 +39,7 @@
     <string name="item_detail_menu_refresh">Refresh</string>
     <string name="item_detail_menu_delete">Delete</string>
 
+    <string name="dialog_delete_title">Confirm Deletion</string>
+    <string name="dialog_delete_message">Do you really want to delete this item?</string>
+
 </resources>

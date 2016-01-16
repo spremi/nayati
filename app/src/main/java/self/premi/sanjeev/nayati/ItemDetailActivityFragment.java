@@ -14,9 +14,11 @@
 package self.premi.sanjeev.nayati;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -196,6 +198,47 @@ public class ItemDetailActivityFragment extends Fragment {
      * Delete the current item and its history
      */
     private void actionItemDelete() {
+        //
+        // Show alert for deletion
+        //
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+
+        builder.setCancelable(false)
+                .setTitle(R.string.dialog_delete_title)
+                .setMessage(R.string.dialog_delete_message)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        long itemId = item.getId();
+
+                        //
+                        // Delete tracking information associated with item
+                        //
+                        daoTrackInfo.open(DbConst.RW_MODE);
+                        daoTrackInfo.delete(itemId);
+                        daoTrackInfo.close();
+
+                        //
+                        // Delete item itself
+                        //
+                        daoTrackItem.open(DbConst.RW_MODE);
+                        daoTrackItem.delete(itemId);
+                        daoTrackItem.close();
+
+                        //
+                        // Return to previous activity
+                        //
+                        getActivity().onBackPressed();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog ad = builder.create();
+
+        ad.show();
     }
 
 
