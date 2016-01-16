@@ -42,17 +42,27 @@ public class TrackItem {
      */
     private int state;
 
+    /**
+     * Last sync time as string. ("" for never)
+     */
+    private String sync;
 
-    public TrackItem(long id, String trackNum, String name, long category, int state) {
+
+    public TrackItem(long id, String trackNum, String name, long category, int state, String sync) {
         this.id = id;
         this.trackNum = trackNum;
         this.name = name;
         this.category = category;
         this.state = state;
+        this.sync = sync;
+    }
+
+    public TrackItem(long id, String trackNum, String name, long category, int state) {
+        this(id, trackNum, name, category, state, "");
     }
 
     public TrackItem(String trackNum, String name, long category) {
-        this(-1, trackNum, name, category, -1);
+        this(-1, trackNum, name, category, -1, "");
     }
 
 
@@ -98,8 +108,17 @@ public class TrackItem {
     }
 
 
+    public String getSync() {
+        return sync;
+    }
+
+    public void setSync(String sync) {
+        this.sync = sync;
+    }
+
     @Override
     public String toString() {
-        return "TrackItem [" + id + "] " + trackNum + ", " + name + ", " + category + ", " + state;
+        return "TrackItem [" + id + "] " + trackNum + ", " + name + ", " +
+                                            category + ", " + state  + ", " + sync;
     }
 }
