@@ -54,9 +54,25 @@ public class ItemDetailActivity extends AppCompatActivity {
                 /*
                  * Return to previous activity
                  */
+                Intent ri = new Intent();
+                ri.putExtra("refresh", dbChanged);
+
+                setResult(RESULT_CANCELED, ri);
+
                 finish();
             }
         });
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        Intent ri = new Intent();
+        ri.putExtra("refresh", dbChanged);
+
+        setResult(RESULT_CANCELED, ri);
+
+        super.onBackPressed();
     }
 
 
