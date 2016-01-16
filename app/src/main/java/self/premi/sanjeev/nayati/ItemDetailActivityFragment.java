@@ -225,6 +225,11 @@ public class ItemDetailActivityFragment extends Fragment {
                         daoTrackItem.close();
 
                         //
+                        // Update change flag in the activity
+                        //
+                        ((ItemDetailActivity)getActivity()).setDbChanged();
+
+                        //
                         // Return to previous activity
                         //
                         getActivity().onBackPressed();
