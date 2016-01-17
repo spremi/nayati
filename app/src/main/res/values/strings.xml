@@ -40,6 +40,7 @@
     <string name="item_detail_menu_delete">Delete</string>
 
     <string name="msg_refresh_wait">Too soon for a refresh&#8230;</string>
+    <string name="msg_no_internet">No internet connection</string>
 
     <string name="dialog_delete_title">Confirm Deletion</string>
     <string name="dialog_delete_message">Do you really want to delete this item?</string>

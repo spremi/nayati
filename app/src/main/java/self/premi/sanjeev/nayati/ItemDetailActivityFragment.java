@@ -15,6 +15,8 @@ package self.premi.sanjeev.nayati;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -256,6 +258,17 @@ public class ItemDetailActivityFragment extends Fragment {
     private void actionItemRefresh() {
         boolean allow = false;
 
+        //
+        // Check internet connectivity before moving ahead.
+        //
+        if (!isInternetAvailable()) {
+            Snackbar.make(getView(), R.string.msg_no_internet, Snackbar.LENGTH_SHORT)
+                    .setAction("Action", null)
+                    .show();
+
+            return;
+        }
+
         String prevSync = item.getSync();
 
         if (prevSync.equals("")) {
@@ -301,6 +314,22 @@ public class ItemDetailActivityFragment extends Fragment {
         daoTrackInfo.close();
 
         rva.refresh(info);
+    }
+
+
+    /**
+     * Is internet connection available?
+     */
+    private boolean isInternetAvailable() {
+        boolean ret = false;
+
+        ConnectivityManager cm = (ConnectivityManager) getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo info = cm.getActiveNetworkInfo();
+
+        if ((info != null) && info.isConnected()) ret = true;
+
+        return ret;
     }
 
 
