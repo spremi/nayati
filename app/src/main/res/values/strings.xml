@@ -20,6 +20,9 @@
     <string name="item_add_success">Item added.</string>
     <string name="item_add_failure">Unable to add item.</string>
 
+    <string name="msg_empty_track_num">Tracking number is empty</string>
+    <string name="msg_empty_item_name">Item name is empty</string>
+
     <string name="title_activity_item_list">nayati: View items</string>
 
     <string name="item_list_track_num">TRACKING NUMBER</string>

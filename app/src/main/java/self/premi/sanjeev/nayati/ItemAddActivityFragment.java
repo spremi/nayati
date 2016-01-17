@@ -154,6 +154,22 @@ public class ItemAddActivityFragment
                 String itemName = editItemName.getText().toString();
                 String itemCat  = spinItemCat.getSelectedItem().toString();
 
+                if (trackNum.isEmpty()) {
+                    Snackbar.make(v, R.string.msg_empty_track_num, Snackbar.LENGTH_SHORT)
+                            .setAction("Action", null)
+                            .show();
+
+                    return;
+                }
+
+                if (itemName.isEmpty()) {
+                    Snackbar.make(v, R.string.msg_empty_item_name, Snackbar.LENGTH_SHORT)
+                            .setAction("Action", null)
+                            .show();
+
+                    return;
+                }
+
                 long catId = -1;
 
                 /*
