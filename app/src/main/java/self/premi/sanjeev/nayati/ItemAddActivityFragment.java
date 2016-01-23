@@ -32,6 +32,7 @@ import self.premi.sanjeev.nayati.db.DaoItemCategory;
 import self.premi.sanjeev.nayati.db.DaoTrackItem;
 import self.premi.sanjeev.nayati.db.DbConst;
 import self.premi.sanjeev.nayati.model.ItemCategory;
+import self.premi.sanjeev.nayati.model.TrackNum;
 
 
 /**
@@ -160,6 +161,16 @@ public class ItemAddActivityFragment
                             .show();
 
                     return;
+                } else {
+                    TrackNum tn = new TrackNum(trackNum);
+
+                    if (tn.identify() == TrackNum.F_NONE) {
+                        Snackbar.make(v, R.string.msg_track_num_format, Snackbar.LENGTH_SHORT)
+                                .setAction("Action", null)
+                                .show();
+
+                        return;
+                    }
                 }
 
                 if (itemName.isEmpty()) {

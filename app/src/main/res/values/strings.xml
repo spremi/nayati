@@ -22,6 +22,7 @@
 
     <string name="msg_empty_track_num">Tracking number is empty</string>
     <string name="msg_empty_item_name">Item name is empty</string>
+    <string name="msg_track_num_format">Check tracking number.</string>
 
     <string name="title_activity_item_list">nayati: View items</string>
 
