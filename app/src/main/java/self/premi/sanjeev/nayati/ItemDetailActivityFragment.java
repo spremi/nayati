@@ -38,6 +38,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 import self.premi.sanjeev.nayati.db.DaoTrackInfo;
@@ -279,7 +280,7 @@ public class ItemDetailActivityFragment extends Fragment {
         } else {
             try {
                 Date curr = new Date();
-                Date last = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").parse(prevSync);
+                Date last = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.US).parse(prevSync);
 
                 long minutes = TimeUnit.MILLISECONDS.toMinutes(curr.getTime() - last.getTime());
 
@@ -397,7 +398,7 @@ public class ItemDetailActivityFragment extends Fragment {
             //
             // Update sync time for the item
             //
-            item.setSync(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+            item.setSync(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US).format(new Date()));
 
             daoTrackItem.open(DbConst.RW_MODE);
             daoTrackItem.update(item);
@@ -434,8 +435,8 @@ public class ItemDetailActivityFragment extends Fragment {
             //
             // Date formats for conversion.
             //
-            SimpleDateFormat fmtInp = new SimpleDateFormat("M/d/yyyy h:m:s aa");
-            SimpleDateFormat fmtOut = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            SimpleDateFormat fmtInp = new SimpleDateFormat("M/d/yyyy h:m:s aa", Locale.US);
+            SimpleDateFormat fmtOut = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
 
             String row;
 
