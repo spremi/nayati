@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Nayati</string>
 
+    <string name="app_copy">Copyright 2015, Sanjeev Premi.</string>
+
     <string name="blank_string"></string>
 
     <string name="main_actionbar_title">nayati</string>
@@ -52,5 +54,8 @@
     <string name="dialog_delete_message">Do you really want to delete this item?</string>
 
     <string name="desc_postal_service">Postal service logo</string>
+
+    <string name="desc_main_info">Application information</string>
+    <string name="desc_main_logo">Application logo</string>
 
 </resources>

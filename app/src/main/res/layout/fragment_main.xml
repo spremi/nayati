@@ -1,4 +1,18 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--
+  ~ [Nayati] fragment_main.xml
+  ~
+  ~ Describes layout of fragment associated with MainActivity.
+  ~
+  ~ (c) 2015 Sanjeev Premi (spremi@ymail.com)
+  ~
+  ~ SPDX-License-Identifier: BSD-3-Clause
+  ~                          (http://spdx.org/licenses/BSD-3-Clause.html)
+  ~
+  -->
+
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -6,12 +20,35 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
     tools:context="self.premi.sanjeev.nayati.MainActivityFragment"
-    tools:showIn="@layout/activity_main">
+    tools:showIn="@layout/activity_main"
+    android:weightSum="1.0">
+
+    <ImageView
+        android:id="@+id/main_info"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.6"
+        android:contentDescription="@string/desc_main_info"
+        android:src="@drawable/nayati_info" />
+
+    <ImageView
+        android:id="@+id/main_logo"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.3"
+        android:contentDescription="@string/desc_main_logo"
+        android:src="@drawable/ananya_jyoti" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:id="@+id/main_copy"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"
+        android:gravity="bottom"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textAlignment="center"
+        android:text="@string/app_copy" />
 
-</RelativeLayout>
+</LinearLayout>
