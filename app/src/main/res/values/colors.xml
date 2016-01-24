@@ -1,13 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#37474F</color>
+    <color name="colorPrimaryDark">#263238</color>
+    <color name="colorPrimaryLight">#78909C</color>
 
-    <color name="BgItemCategory">#03a9f4</color>
-    <color name="FgItemCategory">#ffffff</color>
+    <color name="colorAccent">#FF5252</color>
+    <color name="colorAccentLight">#FF8A80</color>
 
-    <color name="BgInfo">#E1F5FE</color>
-    <color name="BgInfoDate">#0288D1</color>
-    <color name="FgInfoDate">#ffffff</color>
+    <color name="bgWindow">#37474F</color>
+    <color name="fgWindow">#ECEFF1</color>
+
+    <color name="textColorPrimary">#ECEFF1</color>
+    <color name="textColorSecondary">#FFFFFF</color>
+
+    <color name="textColorHint">#90A4AE</color>
+
+
+    <!-- Main -->
+    <color name="fgMainCopy">#78909C</color>
+
+
+    <!-- Item List -->
+    <color name="bgListCard">#546E7A</color>
+
+    <color name="fgListTitle">#ECEFF1</color>
+    <color name="fgListSubTitle">#CFD8DC</color>
+
+    <color name="fgListCategory">#FF8A80</color>
+
+
+    <!-- Item Details -->
+    <color name="fgDetailTitle">#ECEFF1</color>
+
+    <color name="fgDetailCategory">#FF8A80</color>
+
+    <color name="bgDetailCard">#455A64</color>
+    <color name="fgDetailCardText">#CFD8DC</color>
+
+    <color name="bgDetailCardDate">#34434A</color>
+    <color name="fgDetailCardDate">#FFEBEE</color>
+
 </resources>
