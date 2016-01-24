@@ -28,61 +28,110 @@
 
         <LinearLayout
             android:orientation="vertical"
-            android:background="@color/BgInfo"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <!-- Date -->
             <TextView
                 android:id="@+id/item_detail_text_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="4dp"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:background="@color/BgInfoDate"
-                android:textColor="@color/FgInfoDate"
                 android:text="@string/item_detail_empty" />
 
-            <TextView
-                android:id="@+id/item_detail_text_country"
+            <!-- Current location incl. country -->
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="4dp"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="@string/item_detail_empty" />
+                android:weightSum="1.0"
+                android:padding="4dp">
 
-            <TextView
-                android:id="@+id/item_detail_text_cloc"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="4dp"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="@string/item_detail_empty" />
+                <ImageView
+                    android:id="@+id/icon_cloc"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.1"
+                    android:src="@drawable/ic_pin_drop" />
 
-            <TextView
-                android:id="@+id/item_detail_text_event"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="4dp"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textStyle="bold"
-                android:text="@string/item_detail_empty" />
+                <TextView
+                    android:id="@+id/item_detail_text_cloc"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.6"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="@string/item_detail_empty" />
 
-            <TextView
-                android:id="@+id/item_detail_text_nloc"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="4dp"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="@string/item_detail_empty" />
+                <TextView
+                    android:id="@+id/item_detail_text_country"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="@string/item_detail_empty" />
 
-            <TextView
-                android:id="@+id/item_detail_text_mcat"
+            </LinearLayout>
+
+            <!-- Event -->
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="4dp"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:gravity="right"
-                android:text="@string/item_detail_empty" />
+                android:weightSum="1.0"
+                android:padding="4dp">
+
+                <ImageView
+                    android:id="@+id/icon_event"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.1"
+                    android:src="@drawable/ic_linear_scale" />
+
+                <TextView
+                    android:id="@+id/item_detail_text_event"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.9"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textStyle="bold"
+                    android:text="@string/item_detail_empty" />
+
+            </LinearLayout>
+
+            <!-- Next location -->
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="1.0"
+                android:padding="4dp">
+
+                <ImageView
+                    android:id="@+id/icon_nloc"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.1"
+                    android:src="@drawable/ic_near_me" />
+
+                <TextView
+                    android:id="@+id/item_detail_text_nloc"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="@string/item_detail_empty" />
+
+                <TextView
+                    android:id="@+id/item_detail_text_mcat"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.2"
+                    android:gravity="center_horizontal"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="@string/item_detail_empty" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
