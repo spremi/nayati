@@ -21,6 +21,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/bgWindow"
     tools:context="self.premi.sanjeev.nayati.ItemDetailActivityFragment"
     tools:showIn="@layout/activity_item_detail"
     android:weightSum="1.0">
@@ -38,6 +39,7 @@
             android:layout_height="48dp"
             android:gravity="center_vertical|center_horizontal"
             android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/fgDetailCategory"
             android:text="@string/blank_string" />
 
         <!-- Tracking number & Item name -->
@@ -53,6 +55,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/fgDetailTitle"
                 android:text="@string/item_list_track_num" />
 
             <TextView
@@ -60,6 +63,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/fgDetailTitle"
                 android:text="@string/item_list_name" />
 
         </LinearLayout>
