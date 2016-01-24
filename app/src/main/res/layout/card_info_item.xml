@@ -23,6 +23,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:cardBackgroundColor="@color/bgDetailCard"
         app:cardUseCompatPadding="true"
         app:cardElevation="4dp" >
 
@@ -37,7 +38,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="4dp"
+                android:background="@color/bgDetailCardDate"
                 android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/fgDetailCardDate"
                 android:text="@string/item_detail_empty" />
 
             <!-- Current location incl. country -->
@@ -53,6 +56,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.1"
+                    android:alpha="0.2"
                     android:src="@drawable/ic_pin_drop" />
 
                 <TextView
@@ -61,6 +65,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.6"
                     android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/fgDetailCardText"
                     android:text="@string/item_detail_empty" />
 
                 <TextView
@@ -69,6 +74,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.3"
                     android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/fgDetailCardText"
                     android:text="@string/item_detail_empty" />
 
             </LinearLayout>
@@ -86,6 +92,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.1"
+                    android:alpha="0.2"
                     android:src="@drawable/ic_linear_scale" />
 
                 <TextView
@@ -94,6 +101,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.9"
                     android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/fgDetailCardText"
                     android:textStyle="bold"
                     android:text="@string/item_detail_empty" />
 
@@ -112,6 +120,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.1"
+                    android:alpha="0.2"
                     android:src="@drawable/ic_near_me" />
 
                 <TextView
@@ -120,6 +129,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.7"
                     android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/fgDetailCardText"
                     android:text="@string/item_detail_empty" />
 
                 <TextView
@@ -129,6 +139,7 @@
                     android:layout_weight="0.2"
                     android:gravity="center_horizontal"
                     android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/fgDetailCardText"
                     android:text="@string/item_detail_empty" />
 
             </LinearLayout>
