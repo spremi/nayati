@@ -40,8 +40,6 @@
                 android:layout_margin="4dp"
                 android:gravity="center_vertical|center_horizontal"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:background="@color/BgItemCategory"
-                android:textColor="@color/FgItemCategory"
                 android:text="@string/item_list_category" />
 
             <LinearLayout
