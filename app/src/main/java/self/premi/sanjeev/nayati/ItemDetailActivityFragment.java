@@ -383,6 +383,18 @@ public class ItemDetailActivityFragment extends Fragment {
 
 
     /**
+     * Save sync time for the item in database
+     */
+    private void saveSyncTime() {
+        item.setSync(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US).format(new Date()));
+
+        daoTrackItem.open(DbConst.RW_MODE);
+        daoTrackItem.update(item);
+        daoTrackItem.close();
+    }
+
+
+    /**
      * Asynchronous task to get tracking information from IPS Web
      */
     private class GetDetails extends AsyncTask<String, Void, String> {
@@ -408,6 +420,7 @@ public class ItemDetailActivityFragment extends Fragment {
             if (s.contains("No information")) {
                 gotInfo = false;
 
+                saveSyncTime();
                 refresh();
 
                 return;
@@ -448,14 +461,7 @@ public class ItemDetailActivityFragment extends Fragment {
 
             daoTrackInfo.close();
 
-            //
-            // Update sync time for the item
-            //
-            item.setSync(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US).format(new Date()));
-
-            daoTrackItem.open(DbConst.RW_MODE);
-            daoTrackItem.update(item);
-            daoTrackItem.close();
+            saveSyncTime();
 
             //
             // Refresh the view
