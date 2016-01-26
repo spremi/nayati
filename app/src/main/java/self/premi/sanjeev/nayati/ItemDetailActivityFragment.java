@@ -111,6 +111,11 @@ public class ItemDetailActivityFragment extends Fragment {
      */
     private ImageView logoSvc = null;
 
+    /**
+     * Flag indicating availability of information
+     */
+    private boolean gotInfo = false;
+
 
     public ItemDetailActivityFragment() {
         setHasOptionsMenu(true);
@@ -342,9 +347,20 @@ public class ItemDetailActivityFragment extends Fragment {
     public void refresh() {
         info.clear();
 
-        daoTrackInfo.open(DbConst.RO_MODE);
-        info = daoTrackInfo.list(item.getId());
-        daoTrackInfo.close();
+        if (gotInfo) {
+            daoTrackInfo.open(DbConst.RO_MODE);
+            info = daoTrackInfo.list(item.getId());
+            daoTrackInfo.close();
+        } else {
+            //
+            // Send dummy information
+            //
+            info = new ArrayList<>();
+
+            String now = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US).format(new Date());
+
+            info.add(new TrackInfo(now, "", "", "No Information", "", "", item.getId()));
+        }
 
         rva.refresh(info);
     }
@@ -390,9 +406,14 @@ public class ItemDetailActivityFragment extends Fragment {
             // No information?
             //
             if (s.contains("No information")) {
-                // TODO
+                gotInfo = false;
+
+                refresh();
+
                 return;
             }
+
+            gotInfo = true;
 
             List<TrackInfo> fresh = parseIpsResponse(s);
 
