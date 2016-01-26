@@ -15,6 +15,7 @@ package self.premi.sanjeev.nayati;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.media.Image;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -30,6 +31,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.text.ParseException;
@@ -46,6 +48,7 @@ import self.premi.sanjeev.nayati.db.DaoTrackItem;
 import self.premi.sanjeev.nayati.db.DbConst;
 import self.premi.sanjeev.nayati.model.TrackInfo;
 import self.premi.sanjeev.nayati.model.TrackItem;
+import self.premi.sanjeev.nayati.model.TrackNum;
 
 
 /**
@@ -103,6 +106,11 @@ public class ItemDetailActivityFragment extends Fragment {
      */
     private TextView textItemName = null;
 
+    /**
+     * Image view - Mail service logo
+     */
+    private ImageView logoSvc = null;
+
 
     public ItemDetailActivityFragment() {
         setHasOptionsMenu(true);
@@ -159,6 +167,30 @@ public class ItemDetailActivityFragment extends Fragment {
 
         textTrackNum.setText(trackNum);
         textItemName.setText(item.getName());
+
+        logoSvc = (ImageView) v.findViewById(R.id.item_detail_image_post);
+
+        TrackNum t = new TrackNum(trackNum);
+
+        switch (t.identify()) {
+            case TrackNum.F_EMS:
+                logoSvc.setImageResource(R.drawable.logo_ems);
+                break;
+
+            case TrackNum.F_REG:
+                logoSvc.setImageResource(R.drawable.logo_reg);
+                break;
+
+            case TrackNum.F_EPP:
+                logoSvc.setImageResource(R.drawable.logo_epp);
+                break;
+
+            case TrackNum.F_EMO:
+                logoSvc.setImageResource(R.drawable.logo_emo);
+                break;
+
+            default:
+        }
 
         return v;
     }
