@@ -95,7 +95,7 @@ public class ItemListRvAdapter
      */
     public static class ItemListHolder
             extends RecyclerView.ViewHolder
-            implements View.OnClickListener {
+            implements View.OnClickListener, View.OnLongClickListener {
 
         private TrackItem item;
 
@@ -112,6 +112,7 @@ public class ItemListRvAdapter
             itemName = (TextView) iv.findViewById(R.id.item_list_text_track_name);
 
             itemView.setOnClickListener(this);
+            itemView.setOnLongClickListener(this);
         }
 
 
@@ -131,6 +132,18 @@ public class ItemListRvAdapter
             if (itemClickListener != null) {
                 itemClickListener.onItemClick(getLayoutPosition());
             }
+        }
+
+
+        @Override
+        public boolean onLongClick(View v) {
+            if (itemClickListener != null) {
+                itemClickListener.onItemLongClick(getLayoutPosition());
+
+                return true;
+            }
+
+            return false;
         }
     }
 }
