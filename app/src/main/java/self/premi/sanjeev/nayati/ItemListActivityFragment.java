@@ -132,4 +132,11 @@ public class ItemListActivityFragment
 
         getActivity().startActivityForResult(i, ItemListActivity.REQUEST_ITEM_DETAIL);
     }
+
+
+    /**
+     * Handle long item click event
+     */
+    public void onItemLongClick(int pos) {
+    }
 }

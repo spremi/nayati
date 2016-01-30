@@ -23,4 +23,9 @@ public interface ItemClickListener {
      * Handle click event for an item at specified position.
      */
     void onItemClick(int position);
+
+    /**
+     * Handle long click event for an item at specified position.
+     */
+    void onItemLongClick(int position);
 }
