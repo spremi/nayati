@@ -138,5 +138,13 @@ public class ItemListActivityFragment
      * Handle long item click event
      */
     public void onItemLongClick(int pos) {
+        /*
+         * Create intent to start 'add' activity - for editing
+         */
+        Intent i = new Intent(getActivity(), ItemAddActivity.class);
+
+        i.putExtra("trackNum", items.get(pos).getTrackNum());
+
+        getActivity().startActivityForResult(i, ItemListActivity.REQUEST_ITEM_EDIT);
     }
 }

@@ -33,6 +33,11 @@ public class ItemListActivity extends AppCompatActivity {
      */
     public static final int REQUEST_ITEM_DETAIL = 102;
 
+    /**
+     * Request code for 'ItemEdit' activity
+     */
+    public static final int REQUEST_ITEM_EDIT = 103;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +68,7 @@ public class ItemListActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if ((requestCode == REQUEST_ITEM_ADD) ||
+            (requestCode == REQUEST_ITEM_EDIT) ||
             (requestCode == REQUEST_ITEM_DETAIL)) {
 
             if (resultCode == RESULT_CANCELED) {
