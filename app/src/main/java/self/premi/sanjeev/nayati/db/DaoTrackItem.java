@@ -182,7 +182,7 @@ public class DaoTrackItem extends DbAccess {
                     long id     = c.getLong(c.getColumnIndex(DbConst.ITEM_ID));
                     String name = c.getString(c.getColumnIndex(DbConst.ITEM_NAME));
                     long cat    = c.getLong(c.getColumnIndex(DbConst.ITEM_ICAT));
-                    int state   = c.getInt(c.getColumnIndex(DbConst.ITEM_ICAT));
+                    int state   = c.getInt(c.getColumnIndex(DbConst.ITEM_STATE));
                     String sync = c.getString(c.getColumnIndex(DbConst.ITEM_SYNC));
 
                     item = new TrackItem(id, tnum, name, cat, state, sync);
