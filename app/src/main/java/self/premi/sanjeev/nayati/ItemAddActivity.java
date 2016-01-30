@@ -28,10 +28,28 @@ public class ItemAddActivity extends AppCompatActivity {
      */
     private boolean dbChanged = false;
 
+    /**
+     * Tracking number for item to be edited.
+     */
+    String editTrackNum;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        /*
+         * Get our intent and extract the tracking number (when editing existing item)
+         */
+        Intent i = getIntent();
+        Bundle extras = getIntent().getExtras();
+
+        if (extras != null) {
+            editTrackNum = i.getExtras().getString("trackNum");
+        } else {
+            editTrackNum = "";
+        }
+
         setContentView(R.layout.activity_item_add);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -66,5 +84,13 @@ public class ItemAddActivity extends AppCompatActivity {
 
     public void setDbChanged() {
         dbChanged = true;
+    }
+
+
+    /**
+     * Return tracking number for editing.
+     */
+    public String getEditTrackNum() {
+        return editTrackNum;
     }
 }
