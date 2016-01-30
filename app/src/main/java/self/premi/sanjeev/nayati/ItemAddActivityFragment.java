@@ -13,6 +13,7 @@
 
 package self.premi.sanjeev.nayati;
 
+import android.content.Context;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -32,6 +33,7 @@ import self.premi.sanjeev.nayati.db.DaoItemCategory;
 import self.premi.sanjeev.nayati.db.DaoTrackItem;
 import self.premi.sanjeev.nayati.db.DbConst;
 import self.premi.sanjeev.nayati.model.ItemCategory;
+import self.premi.sanjeev.nayati.model.TrackItem;
 import self.premi.sanjeev.nayati.model.TrackNum;
 
 
@@ -77,6 +79,11 @@ public class ItemAddActivityFragment
      */
     private Button btnAddItem;
 
+    /**
+     * Item being edited.
+     */
+    private TrackItem useTrackItem;
+
 
     public ItemAddActivityFragment() {
     }
@@ -99,6 +106,37 @@ public class ItemAddActivityFragment
 
         setupSpinItemCategory(v);
         setupButtonAdd(v);
+
+        String useTrackNum = ((ItemAddActivity) getActivity()).getEditTrackNum();
+
+        if (useTrackNum != "") {
+            //
+            // Fetch item from database
+            //
+            daoTrackItem.open(DbConst.RO_MODE);
+            useTrackItem = daoTrackItem.get(useTrackNum);
+            daoTrackItem.close();
+
+            //
+            // Set values in the 'Add' form.
+            //
+            editTrackNum.setText(useTrackItem.getTrackNum());
+            editItemName.setText(useTrackItem.getName());
+
+            long itemCat = useTrackItem.getCategory();
+
+            boolean done = false;
+            for (int i = 0; (!done && i < itemCats.size()); i++) {
+                if (itemCats.get(i).getId() == itemCat) {
+                    spinItemCat.setSelection(i);
+                    done = true;
+                }
+            }
+
+            btnAddItem.setText(R.string.item_add_hint_update);
+        } else {
+            useTrackItem = null;
+        }
 
         return v;
     }
@@ -193,26 +231,49 @@ public class ItemAddActivityFragment
                 }
 
                 /*
-                 * Add item to database
+                 * Add/ Update item to/in database
                  */
+                boolean opStatus = false;
+                int opMessage;
+
                 daoTrackItem.open(DbConst.RW_MODE);
-                long itemId = daoTrackItem.add(trackNum, itemName, catId);
+
+                if (useTrackItem == null) {
+                    long itemId = daoTrackItem.add(trackNum, itemName, catId);
+
+                    if (itemId == -1) {
+                        opMessage = R.string.item_add_failure;
+                    } else {
+                        opStatus  = true;
+                        opMessage = R.string.item_add_success;
+                    }
+                } else {
+                    useTrackItem.setTrackNum(trackNum);
+                    useTrackItem.setName(itemName);
+                    useTrackItem.setCategory(catId);
+
+                    boolean status = daoTrackItem.update(useTrackItem);
+
+                    if (status) {
+                        opStatus  = true;
+                        opMessage = R.string.item_update_success;
+                    } else {
+                        opMessage = R.string.item_update_failure;
+                    }
+                }
+
                 daoTrackItem.close();
 
-                if (itemId == -1) {
-                    Snackbar.make(v,
-                            R.string.item_add_failure, Snackbar.LENGTH_SHORT)
-                                .setAction("Action", null).show();
-                } else {
+                if (opStatus) {
                     /*
                      * Update change flag in the activity
                      */
                     ((ItemAddActivity) getActivity()).setDbChanged();
-
-                    Snackbar.make(v,
-                            R.string.item_add_success, Snackbar.LENGTH_SHORT)
-                            .setAction("Action", null).show();
                 }
+
+                Snackbar.make(v, opMessage, Snackbar.LENGTH_SHORT)
+                        .setAction("Action", null)
+                        .show();
 
                 /*
                  * Clear the form.
