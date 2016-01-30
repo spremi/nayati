@@ -317,7 +317,7 @@ public class ItemDetailActivityFragment extends Fragment {
         } else {
             try {
                 Date curr = new Date();
-                Date last = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.US).parse(prevSync);
+                Date last = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US).parse(prevSync);
 
                 long minutes = TimeUnit.MILLISECONDS.toMinutes(curr.getTime() - last.getTime());
 
