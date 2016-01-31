@@ -189,7 +189,7 @@ public class ItemAddActivityFragment
         btnAddItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String trackNum = editTrackNum.getText().toString();
+                String trackNum = editTrackNum.getText().toString().toUpperCase();
                 String itemName = editItemName.getText().toString();
                 String itemCat  = spinItemCat.getSelectedItem().toString();
 
