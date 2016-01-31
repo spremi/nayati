@@ -204,18 +204,7 @@ public class ItemDetailActivityFragment extends Fragment {
 
         itemState = (ImageView) v.findViewById(R.id.item_detail_status);
 
-        switch (item.getState()) {
-            case DbConst.ITEM_STATE_FINAL:
-                itemState.setImageResource(R.drawable.icon_arrived);
-                break;
-
-            case DbConst.ITEM_STATE_TRANSIT:
-                itemState.setImageResource(R.drawable.icon_transit);
-                break;
-
-            default:
-                itemState.setImageResource(R.drawable.icon_unknown);
-        }
+        showItemState();
 
         return v;
     }
@@ -379,6 +368,11 @@ public class ItemDetailActivityFragment extends Fragment {
         info.clear();
 
         if (gotInfo) {
+            //
+            // Refresh item state to be in sync with any change of state
+            //
+            showItemState();
+
             daoTrackInfo.open(DbConst.RO_MODE);
             info = daoTrackInfo.list(item.getId());
             daoTrackInfo.close();
@@ -424,6 +418,23 @@ public class ItemDetailActivityFragment extends Fragment {
         daoTrackItem.close();
     }
 
+    /**
+     * Show image associated with item state
+     */
+    private void showItemState() {
+        switch (item.getState()) {
+            case DbConst.ITEM_STATE_FINAL:
+                itemState.setImageResource(R.drawable.icon_arrived);
+                break;
+
+            case DbConst.ITEM_STATE_TRANSIT:
+                itemState.setImageResource(R.drawable.icon_transit);
+                break;
+
+            default:
+                itemState.setImageResource(R.drawable.icon_unknown);
+        }
+    }
 
     /**
      * Asynchronous task to get tracking information from IPS Web
