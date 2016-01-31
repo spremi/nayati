@@ -112,6 +112,11 @@ public class ItemDetailActivityFragment extends Fragment {
     private ImageView logoSvc = null;
 
     /**
+     * Image view - Item state
+     */
+    private ImageView itemState = null;
+
+    /**
      * Flag indicating availability of information
      */
     private boolean gotInfo = false;
@@ -195,6 +200,21 @@ public class ItemDetailActivityFragment extends Fragment {
                 break;
 
             default:
+        }
+
+        itemState = (ImageView) v.findViewById(R.id.item_detail_status);
+
+        switch (item.getState()) {
+            case DbConst.ITEM_STATE_FINAL:
+                itemState.setImageResource(R.drawable.icon_arrived);
+                break;
+
+            case DbConst.ITEM_STATE_TRANSIT:
+                itemState.setImageResource(R.drawable.icon_transit);
+                break;
+
+            default:
+                itemState.setImageResource(R.drawable.icon_unknown);
         }
 
         return v;
