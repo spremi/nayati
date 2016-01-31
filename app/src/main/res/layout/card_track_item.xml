@@ -71,10 +71,11 @@
 
             <ImageView
                 android:id="@+id/item_list_text_track_state"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:layout_weight="0.1"
-                android:gravity="center_vertical|center_horizontal" />
+                android:layout_gravity="center_vertical"
+                android:contentDescription="@string/desc_item_state" />
 
         </LinearLayout>
 
