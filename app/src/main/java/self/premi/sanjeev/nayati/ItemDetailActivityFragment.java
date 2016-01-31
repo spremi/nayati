@@ -317,6 +317,17 @@ public class ItemDetailActivityFragment extends Fragment {
         boolean allow = false;
 
         //
+        // No need to refresh, if item has reached 'final' state
+        //
+        if (item.getState() == DbConst.ITEM_STATE_FINAL) {
+            Snackbar.make(getView(), R.string.msg_already_delivered, Snackbar.LENGTH_SHORT)
+                    .setAction("Action", null)
+                    .show();
+
+            return;
+        }
+
+        //
         // Check internet connectivity before moving ahead.
         //
         if (!isInternetAvailable()) {
