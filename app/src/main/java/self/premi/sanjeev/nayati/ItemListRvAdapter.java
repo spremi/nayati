@@ -17,10 +17,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
 
+import self.premi.sanjeev.nayati.db.DbConst;
 import self.premi.sanjeev.nayati.model.TrackItem;
 
 
@@ -101,6 +103,8 @@ public class ItemListRvAdapter
 
         public TextView trackNum;
         public TextView itemName;
+        public ImageView itemState;
+
 
         /**
          * Constructor
@@ -110,6 +114,7 @@ public class ItemListRvAdapter
 
             trackNum = (TextView) iv.findViewById(R.id.item_list_text_track_num);
             itemName = (TextView) iv.findViewById(R.id.item_list_text_track_name);
+            itemState = (ImageView) iv.findViewById(R.id.item_list_text_track_state);
 
             itemView.setOnClickListener(this);
             itemView.setOnLongClickListener(this);
@@ -124,6 +129,19 @@ public class ItemListRvAdapter
 
             trackNum.setText(item.getTrackNum());
             itemName.setText(item.getName());
+
+            switch (item.getState()) {
+                case DbConst.ITEM_STATE_FINAL:
+                    itemState.setImageResource(R.drawable.icon_arrived);
+                    break;
+
+                case DbConst.ITEM_STATE_TRANSIT:
+                    itemState.setImageResource(R.drawable.icon_transit);
+                    break;
+
+                default:
+                    itemState.setImageResource(R.drawable.icon_unknown);
+            }
         }
 
 
