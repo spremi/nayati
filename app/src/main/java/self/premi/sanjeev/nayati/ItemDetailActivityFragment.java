@@ -419,6 +419,23 @@ public class ItemDetailActivityFragment extends Fragment {
     }
 
     /**
+     * Set tracking state for the item in database
+     */
+    private void saveState(int state) {
+        item.setState(state);
+
+        daoTrackItem.open(DbConst.RW_MODE);
+        daoTrackItem.update(item);
+        daoTrackItem.close();
+
+        //
+        // Update change flag in the activity to refresh the state icon.
+        //
+        ((ItemDetailActivity)getActivity()).setDbChanged();
+    }
+
+
+    /**
      * Show image associated with item state
      */
     private void showItemState() {
@@ -468,10 +485,13 @@ public class ItemDetailActivityFragment extends Fragment {
                 return;
             }
 
+            int state = DbConst.ITEM_STATE_NONE;
+
             gotInfo = true;
 
             List<TrackInfo> fresh = parseIpsResponse(s);
 
+            if (fresh.size() > 0) state = DbConst.ITEM_STATE_TRANSIT;
 
             daoTrackInfo.open(DbConst.RW_MODE);
 
@@ -498,12 +518,18 @@ public class ItemDetailActivityFragment extends Fragment {
             // Add 'new' data to database.
             //
             for (; j >=0 ; j--) {
-                daoTrackInfo.add(fresh.get(j));
+                TrackInfo ti = fresh.get(j);
+                daoTrackInfo.add(ti);
+
+                if (ti.getEvent().contains("Deliver item")) {
+                    state = DbConst.ITEM_STATE_FINAL;
+                }
             }
 
             daoTrackInfo.close();
 
             saveSyncTime();
+            saveState(state);
 
             //
             // Refresh the view
