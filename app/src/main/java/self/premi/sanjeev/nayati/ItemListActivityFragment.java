@@ -26,7 +26,7 @@ import java.util.List;
 
 import self.premi.sanjeev.nayati.db.DaoTrackItem;
 import self.premi.sanjeev.nayati.db.DbConst;
-import self.premi.sanjeev.nayati.model.TrackItem;
+import self.premi.sanjeev.nayati.model.TrackItemView;
 
 
 /**
@@ -59,7 +59,7 @@ public class ItemListActivityFragment
     /**
      * List of items being tracked
      */
-    List<TrackItem> items = null;
+    List<TrackItemView> items = null;
 
 
     public ItemListActivityFragment() {
@@ -91,7 +91,7 @@ public class ItemListActivityFragment
 
         if (items == null) {
             daoTrackItem.open(DbConst.RO_MODE);
-            items = daoTrackItem.list();
+            items = daoTrackItem.listResolved();
             daoTrackItem.close();
         }
 
@@ -112,7 +112,7 @@ public class ItemListActivityFragment
         items.clear();
 
         daoTrackItem.open(DbConst.RO_MODE);
-        items = daoTrackItem.list();
+        items = daoTrackItem.listResolved();
         daoTrackItem.close();
 
         rva.refresh(items);

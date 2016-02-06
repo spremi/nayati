@@ -23,7 +23,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import self.premi.sanjeev.nayati.db.DbConst;
-import self.premi.sanjeev.nayati.model.TrackItem;
+import self.premi.sanjeev.nayati.model.TrackItemView;
 
 
 /**
@@ -35,7 +35,7 @@ public class ItemListRvAdapter
     /**
      * List of items being tracked.
      */
-    private List<TrackItem> items;
+    private List<TrackItemView> items;
 
     /**
      * Listener for the click event on items in the list.
@@ -47,7 +47,7 @@ public class ItemListRvAdapter
     /**
      * Constructor
      */
-    public ItemListRvAdapter(List<TrackItem> items) {
+    public ItemListRvAdapter(List<TrackItemView> items) {
         this.items = items;
     }
 
@@ -83,7 +83,7 @@ public class ItemListRvAdapter
     /**
      * Update list of items
      */
-    public void refresh(List<TrackItem> items) {
+    public void refresh(List<TrackItemView> items) {
         this.items.clear();
 
         this.items = items;
@@ -99,10 +99,11 @@ public class ItemListRvAdapter
             extends RecyclerView.ViewHolder
             implements View.OnClickListener, View.OnLongClickListener {
 
-        private TrackItem item;
+        private TrackItemView item;
 
         public TextView trackNum;
         public TextView itemName;
+        public TextView itemCat;
         public ImageView itemState;
 
 
@@ -114,6 +115,7 @@ public class ItemListRvAdapter
 
             trackNum = (TextView) iv.findViewById(R.id.item_list_text_track_num);
             itemName = (TextView) iv.findViewById(R.id.item_list_text_track_name);
+            itemCat  = (TextView) iv.findViewById(R.id.item_list_text_category);
             itemState = (ImageView) iv.findViewById(R.id.item_list_text_track_state);
 
             itemView.setOnClickListener(this);
@@ -124,11 +126,12 @@ public class ItemListRvAdapter
         /**
          * Bind an item
          */
-        public void bindTrackItem(TrackItem it) {
+        public void bindTrackItem(TrackItemView it) {
             item = it;
 
             trackNum.setText(item.getTrackNum());
             itemName.setText(item.getName());
+            itemCat.setText(item.getCategory());
 
             switch (item.getState()) {
                 case DbConst.ITEM_STATE_FINAL:
