@@ -33,6 +33,7 @@
     <!-- Item Details -->
     <color name="fgDetailTitle">#ECEFF1</color>
 
+    <color name="bgDetailCategory">#455A64</color>
     <color name="fgDetailCategory">#FF8A80</color>
 
     <color name="bgDetailCard">#455A64</color>

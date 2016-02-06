@@ -38,6 +38,7 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:gravity="center_vertical|center_horizontal"
+            android:background="@color/bgDetailCategory"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/fgDetailCategory"
             android:text="@string/blank_string" />
