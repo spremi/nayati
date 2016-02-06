@@ -55,10 +55,12 @@ public class ItemAddActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        if (editTrackNum != "") {
-            ActionBar actionBar = getSupportActionBar();
+        ActionBar actionBar = getSupportActionBar();
 
-            if (actionBar != null) {
+        if (actionBar != null) {
+            actionBar.setLogo(R.drawable.ic_nayati);
+
+            if (editTrackNum != "") {
                 actionBar.setTitle(R.string.title_activity_item_edit);
             }
         }
