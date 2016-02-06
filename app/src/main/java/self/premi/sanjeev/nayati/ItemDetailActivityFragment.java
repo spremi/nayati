@@ -43,9 +43,11 @@ import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
+import self.premi.sanjeev.nayati.db.DaoItemCategory;
 import self.premi.sanjeev.nayati.db.DaoTrackInfo;
 import self.premi.sanjeev.nayati.db.DaoTrackItem;
 import self.premi.sanjeev.nayati.db.DbConst;
+import self.premi.sanjeev.nayati.model.ItemCategory;
 import self.premi.sanjeev.nayati.model.TrackInfo;
 import self.premi.sanjeev.nayati.model.TrackItem;
 import self.premi.sanjeev.nayati.model.TrackNum;
@@ -87,7 +89,12 @@ public class ItemDetailActivityFragment extends Fragment {
     private DaoTrackInfo daoTrackInfo = null;
 
     /**
-     * Items being tracked
+     * DAO for item categories
+     */
+    private DaoItemCategory daoItemCategory= null;
+
+    /**
+     * Item being tracked
      */
     private TrackItem item = null;
 
@@ -105,6 +112,11 @@ public class ItemDetailActivityFragment extends Fragment {
      * Text view - Item Name
      */
     private TextView textItemName = null;
+
+    /**
+     * Text view - Item Category
+     */
+    private TextView textItemCat = null;
 
     /**
      * Image view - Mail service logo
@@ -167,6 +179,17 @@ public class ItemDetailActivityFragment extends Fragment {
 
         daoTrackInfo.close();
 
+        //
+        // Get information on the item category
+        //
+        if (daoItemCategory == null) {
+            daoItemCategory = new DaoItemCategory(getContext());
+        }
+
+        daoItemCategory.open(DbConst.RO_MODE);
+        ItemCategory icat = daoItemCategory.get(item.getCategory());
+        daoItemCategory.close();
+
         rva = new ItemDetailRvAdapter(info);
 
         rv.setAdapter(rva);
@@ -174,9 +197,11 @@ public class ItemDetailActivityFragment extends Fragment {
 
         textTrackNum = (TextView) v.findViewById(R.id.item_detail_text_track_num);
         textItemName = (TextView) v.findViewById(R.id.item_detail_text_track_name);
+        textItemCat  = (TextView) v.findViewById(R.id.item_detail_text_category);
 
         textTrackNum.setText(trackNum);
         textItemName.setText(item.getName());
+        textItemCat.setText(icat.getSymbol());
 
         logoSvc = (ImageView) v.findViewById(R.id.item_detail_image_post);
 
