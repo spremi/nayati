@@ -30,7 +30,7 @@
         android:id="@+id/main_info"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.6"
+        android:layout_weight="0.7"
         android:contentDescription="@string/desc_main_info"
         android:src="@drawable/nayati_info" />
 
@@ -38,7 +38,7 @@
         android:id="@+id/main_logo"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.3"
+        android:layout_weight="0.2"
         android:contentDescription="@string/desc_main_logo"
         android:src="@drawable/ananya_jyoti" />
 
