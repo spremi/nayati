@@ -150,4 +150,41 @@ public class DaoItemCategory extends DbAccess {
 
         return items;
     }
+
+    /**
+     * Get item category for the specified Id.
+     */
+    public ItemCategory get(long id)
+    {
+        ItemCategory cat = null;
+
+        Cursor c;
+
+        db.beginTransaction();
+        try {
+            c = db.query(DbConst.TABLE_ITEMCATS,
+                    null,
+                    DbConst.ITEMCAT_ID + " = " + "\"" + id + "\"",
+                    null, null, null, null);
+
+            db.setTransactionSuccessful();
+
+            if (c != null) {
+                if (c.moveToFirst()) {
+                    long cid      = c.getLong(c.getColumnIndex(DbConst.ITEMCAT_ID));
+                    String name   = c.getString(c.getColumnIndex(DbConst.ITEMCAT_NAME));
+                    String symbol = c.getString(c.getColumnIndex(DbConst.ITEMCAT_SYMBOL));
+
+                    cat = new ItemCategory(cid, name, symbol);
+                }
+            }
+        }
+        finally {
+            db.endTransaction();
+        }
+
+        c.close();
+
+        return cat;
+    }
 }
