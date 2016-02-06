@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import self.premi.sanjeev.nayati.model.TrackItem;
+import self.premi.sanjeev.nayati.model.TrackItemView;
 
 
 /**
@@ -146,6 +147,56 @@ public class DaoTrackItem extends DbAccess {
                         String sync = c.getString(c.getColumnIndex(DbConst.ITEM_SYNC));
 
                         items.add(new TrackItem(id, tnum, name, cat, state, sync));
+                    } while (c.moveToNext());
+                }
+            }
+        }
+        finally {
+            db.endTransaction();
+        }
+
+        c.close();
+
+        return items;
+    }
+
+    /**
+     * List all items with resolved (joined) data across the tables.
+     */
+    public List<TrackItemView> listResolved()
+    {
+        List<TrackItemView> items = new ArrayList<>();
+
+        Cursor c;
+
+        String query = "SELECT " +
+                            "ITEM" + "." + DbConst.ITEM_ID + " AS iid, " +
+                            "ITEM" + "." + DbConst.ITEM_TNUM     + ", " +
+                            "ITEM" + "." + DbConst.ITEM_NAME     + ", " +
+                            "ITEM" + "." + DbConst.ITEM_STATE    + ", " +
+                            "ITEM" + "." + DbConst.ITEM_SYNC     + ", " +
+                            "CAT" + "." + DbConst.ITEMCAT_SYMBOL +
+                        " FROM " + DbConst.TABLE_ITEMS   + " ITEM " +
+                            " INNER JOIN " + DbConst.TABLE_ITEMCATS + " CAT " +
+                            " ON " + "ITEM" + "." + DbConst.ITEM_ICAT + " = " + "CAT" + "." + DbConst.ITEMCAT_ID;
+
+        db.beginTransaction();
+        try {
+            c = db.rawQuery(query, null);
+
+            db.setTransactionSuccessful();
+
+            if (c != null) {
+                if (c.moveToFirst()) {
+                    do {
+                        long id     = c.getLong(0);
+                        String tnum = c.getString(1);
+                        String name = c.getString(2);
+                        int state   = c.getInt(3);
+                        String sync = c.getString(4);
+                        String cat  = c.getString(5);
+
+                        items.add(new TrackItemView(id, tnum, name, cat, state, sync));
                     } while (c.moveToNext());
                 }
             }
