@@ -35,7 +35,7 @@ public class ItemCategory {
 
 
 
-    public ItemCategory(long id, String name, String s) {
+    public ItemCategory(long id, String name, String symbol) {
         this.id = id;
         this.name = name;
         this.symbol = symbol;
