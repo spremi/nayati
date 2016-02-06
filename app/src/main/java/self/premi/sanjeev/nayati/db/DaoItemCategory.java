@@ -37,7 +37,7 @@ public class DaoItemCategory extends DbAccess {
 
 
     /**
-     * Adds an item to be tracked.
+     * Adds an item category.
      */
     public long add(ItemCategory cat)
     {
@@ -68,7 +68,7 @@ public class DaoItemCategory extends DbAccess {
 
 
     /**
-     * Deletes an item being tracked.
+     * Deletes an item category.
      */
     public int delete(long id)
     {
@@ -88,7 +88,7 @@ public class DaoItemCategory extends DbAccess {
     }
 
     /**
-     * Updates an item being tracked.
+     * Updates an item category.
      */
     public boolean update(ItemCategory cat)
     {
@@ -116,7 +116,7 @@ public class DaoItemCategory extends DbAccess {
     }
 
     /**
-     * List all items matching specified item id.
+     * List all item categories.
      */
     public List<ItemCategory> list()
     {
