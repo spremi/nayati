@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ [Nayati] dimens.xml
+  ~
+  ~ Custom dimensions for landscape mode
+  ~
+  ~ (c) 2015 Sanjeev Premi (spremi@ymail.com)
+  ~
+  ~ SPDX-License-Identifier: BSD-3-Clause
+  ~                          (http://spdx.org/licenses/BSD-3-Clause.html)
+  ~
+  -->
+
+
+<resources>
+    <dimen name="activity_horizontal_margin">80dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+</resources>
