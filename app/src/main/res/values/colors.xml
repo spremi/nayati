@@ -26,6 +26,7 @@
     <color name="fgListTitle">#ECEFF1</color>
     <color name="fgListSubTitle">#CFD8DC</color>
 
+    <color name="bgListCategory">#455A64</color>
     <color name="fgListCategory">#FF8A80</color>
 
 
