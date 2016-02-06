@@ -73,6 +73,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.3"
+                    android:layout_marginRight="4dp"
+                    android:gravity="right"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textColor="@color/fgDetailCardText"
                     android:text="@string/item_detail_empty" />
@@ -137,7 +139,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.2"
-                    android:gravity="center_horizontal"
+                    android:layout_marginRight="4dp"
+                    android:gravity="right"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textColor="@color/fgDetailCardText"
                     android:text="@string/item_detail_empty" />
