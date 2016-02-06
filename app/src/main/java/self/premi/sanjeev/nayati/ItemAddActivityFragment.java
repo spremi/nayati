@@ -275,18 +275,27 @@ public class ItemAddActivityFragment
                         .setAction("Action", null)
                         .show();
 
-                /*
-                 * Clear the form.
-                 * Don't change category spinner - assuming it would be immediately
-                 * used for adding next item (if any).
-                 */
-                editTrackNum.setText("");
-                editTrackNum.clearFocus();
+                if (useTrackItem == null) {
+                    /*
+                     * Clear the form.
+                     * Don't change category spinner - assuming it would be immediately
+                     * used for adding next item (if any).
+                     */
+                    editTrackNum.setText("");
+                    editTrackNum.clearFocus();
 
-                editItemName.setText("");
-                editItemName.clearFocus();
+                    editItemName.setText("");
+                    editItemName.clearFocus();
 
-                spinItemCat.clearFocus();
+                    spinItemCat.clearFocus();
+                } else {
+                    /*
+                     * Return to previous activity
+                     */
+                    getActivity().onBackPressed();
+                }
+
+
             }
         });
     }
