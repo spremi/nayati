@@ -14,8 +14,8 @@
     <string name="msg_db_already">Database found.</string>
     <string name="msg_db_failure">Database not found.</string>
 
-    <string name="title_activity_item_add">nayati: Add an item</string>
-    <string name="title_activity_item_edit">nayati: Edit an item</string>
+    <string name="title_activity_item_add">Add an item</string>
+    <string name="title_activity_item_edit">Edit an item</string>
 
     <string name="item_add_hint_track_num">Tracking Number</string>
     <string name="item_add_hint_name">Item Name</string>
@@ -33,13 +33,13 @@
     <string name="msg_empty_item_name">Item name is empty</string>
     <string name="msg_track_num_format">Check tracking number.</string>
 
-    <string name="title_activity_item_list">nayati: View items</string>
+    <string name="title_activity_item_list">View items</string>
 
     <string name="item_list_track_num">TRACKING NUMBER</string>
     <string name="item_list_name">ITEM NAME</string>
     <string name="item_list_category">C</string>
 
-    <string name="title_activity_item_detail">nayati: Item Details</string>
+    <string name="title_activity_item_detail">View Item Details</string>
 
     <string name="item_detail_label_date">Date</string>
     <string name="item_detail_label_country">Country</string>
