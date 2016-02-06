@@ -120,13 +120,13 @@ public interface DbConst {
     String INIT_ITEM_CATEGORIES[] = {
             "INSERT INTO " + TABLE_ITEMCATS + "('" +
                     ITEMCAT_NAME + "','" +
-                    ITEMCAT_SYMBOL + "') VALUES('Gift', 'G');",
+                    ITEMCAT_SYMBOL + "') VALUES('Gift', 'Gft');",
             "INSERT INTO " + TABLE_ITEMCATS + "('" +
                     ITEMCAT_NAME + "','" +
-                    ITEMCAT_SYMBOL + "') VALUES('Personal', 'P');",
+                    ITEMCAT_SYMBOL + "') VALUES('Personal', 'Per');",
             "INSERT INTO " + TABLE_ITEMCATS + "('" +
                     ITEMCAT_NAME + "','" +
-                    ITEMCAT_SYMBOL + "') VALUES('Documents', 'D');"
+                    ITEMCAT_SYMBOL + "') VALUES('Documents', 'Doc');"
     };
 
 
