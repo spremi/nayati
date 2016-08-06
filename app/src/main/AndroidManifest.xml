@@ -21,6 +21,7 @@
         <activity
             android:name=".ItemAddActivity"
             android:label="@string/title_activity_item_add"
+            android:windowSoftInputMode="stateVisible|adjustResize"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".ItemListActivity"
