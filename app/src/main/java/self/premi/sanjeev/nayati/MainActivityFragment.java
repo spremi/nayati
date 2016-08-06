@@ -38,6 +38,23 @@ public class MainActivityFragment extends Fragment {
 
 
     @Override
+    public void onSaveInstanceState(Bundle outState) {
+
+        outState.putBoolean("dbCheck", dbCheck);
+
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        if (savedInstanceState != null) {
+            dbCheck = savedInstanceState.getBoolean("dbCheck");
+        }
+    }
+
+    @Override
     public void onAttach(Context context) {
         super.onAttach(context);
 
