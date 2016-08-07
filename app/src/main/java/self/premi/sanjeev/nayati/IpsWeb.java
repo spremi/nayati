@@ -14,6 +14,7 @@
 package self.premi.sanjeev.nayati;
 
 import android.net.Uri;
+import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -29,6 +30,11 @@ import java.net.URL;
  * Utility class to get tracking information
  */
 public class IpsWeb {
+    /**
+     * Tag for logging
+     */
+    final String LOG_TAG = "ipsweb";
+
     /**
      * Instance of URL connection via HTTP
      */
@@ -90,11 +96,17 @@ public class IpsWeb {
             ret = true;
         }
         catch (MalformedURLException e) {
-            e.printStackTrace();
+            if (BuildConfig.DEBUG) {
+                Log.e(LOG_TAG, "Invalid URL");
+            }
         } catch (ProtocolException e) {
-            e.printStackTrace();
+            if (BuildConfig.DEBUG) {
+                Log.e(LOG_TAG, "Protocol error");
+            }
         } catch (IOException e) {
-            e.printStackTrace();
+            if (BuildConfig.DEBUG) {
+                Log.e(LOG_TAG, "IO Exception");
+            }
         }
 
         return ret;
