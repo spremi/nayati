@@ -393,6 +393,10 @@ public class ItemDetailActivityFragment extends Fragment {
         info.clear();
 
         if (gotInfo) {
+            Snackbar.make(getView(), R.string.msg_refresh_info, Snackbar.LENGTH_SHORT)
+                    .setAction("Action", null)
+                    .show();
+
             //
             // Refresh item state to be in sync with any change of state
             //
@@ -401,18 +405,13 @@ public class ItemDetailActivityFragment extends Fragment {
             daoTrackInfo.open(DbConst.RO_MODE);
             info = daoTrackInfo.list(item.getId());
             daoTrackInfo.close();
+
+            rva.refresh(info);
         } else {
-            //
-            // Send dummy information
-            //
-            info = new ArrayList<>();
-
-            String now = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US).format(new Date());
-
-            info.add(new TrackInfo(now, "", "", "No Information", "", "", item.getId()));
+            Snackbar.make(getView(), R.string.msg_refresh_no_info, Snackbar.LENGTH_SHORT)
+                    .setAction("Action", null)
+                    .show();
         }
-
-        rva.refresh(info);
     }
 
 

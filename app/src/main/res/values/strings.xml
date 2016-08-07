@@ -53,6 +53,8 @@
     <string name="item_detail_menu_delete">Delete</string>
 
     <string name="msg_refresh_wait">Too soon for a refresh&#8230;</string>
+    <string name="msg_refresh_info">Received status information</string>
+    <string name="msg_refresh_no_info">No status information&#8230; as yet</string>
     <string name="msg_no_internet">No internet connection</string>
     <string name="msg_already_delivered">Package already delivered</string>
 
