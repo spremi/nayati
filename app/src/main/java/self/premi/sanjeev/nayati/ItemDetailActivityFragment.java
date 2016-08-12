@@ -15,7 +15,6 @@ package self.premi.sanjeev.nayati;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.media.Image;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
