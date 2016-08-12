@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--
+  ~ [Nayati] activity_main.xml
+  ~
+  ~ Defines layout for MainActivity.
+  ~
+  ~ (c) 2015 Sanjeev Premi (spremi@ymail.com)
+  ~
+  ~ SPDX-License-Identifier: BSD-3-Clause
+  ~                          (http://spdx.org/licenses/BSD-3-Clause.html)
+  ~
+  -->
+
+
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
