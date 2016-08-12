@@ -329,11 +329,13 @@ public class ItemDetailActivityFragment extends Fragment {
     private void actionItemRefresh() {
         boolean allow = false;
 
+        View v = getActivity().findViewById(R.id.layout_act_item_detail);
+
         //
         // No need to refresh, if item has reached 'final' state
         //
         if (item.getState() == DbConst.ITEM_STATE_FINAL) {
-            Snackbar.make(getView(), R.string.msg_already_delivered, Snackbar.LENGTH_SHORT)
+            Snackbar.make(v, R.string.msg_already_delivered, Snackbar.LENGTH_SHORT)
                     .setAction("Action", null)
                     .show();
 
@@ -344,7 +346,7 @@ public class ItemDetailActivityFragment extends Fragment {
         // Check internet connectivity before moving ahead.
         //
         if (!isInternetAvailable()) {
-            Snackbar.make(getView(), R.string.msg_no_internet, Snackbar.LENGTH_SHORT)
+            Snackbar.make(v, R.string.msg_no_internet, Snackbar.LENGTH_SHORT)
                     .setAction("Action", null)
                     .show();
 
@@ -378,7 +380,7 @@ public class ItemDetailActivityFragment extends Fragment {
         if (allow) {
             new GetDetails().execute(trackNum);
         } else {
-            Snackbar.make(getView(), R.string.msg_refresh_wait, Snackbar.LENGTH_SHORT)
+            Snackbar.make(v, R.string.msg_refresh_wait, Snackbar.LENGTH_SHORT)
                     .setAction("Action", null)
                     .show();
         }
@@ -389,10 +391,12 @@ public class ItemDetailActivityFragment extends Fragment {
      * Read tracking information from database & notify adapter.
      */
     public void refresh() {
+        View v = getActivity().findViewById(R.id.layout_act_item_detail);
+
         info.clear();
 
         if (gotInfo) {
-            Snackbar.make(getView(), R.string.msg_refresh_info, Snackbar.LENGTH_SHORT)
+            Snackbar.make(v, R.string.msg_refresh_info, Snackbar.LENGTH_SHORT)
                     .setAction("Action", null)
                     .show();
 
@@ -407,7 +411,7 @@ public class ItemDetailActivityFragment extends Fragment {
 
             rva.refresh(info);
         } else {
-            Snackbar.make(getView(), R.string.msg_refresh_no_info, Snackbar.LENGTH_SHORT)
+            Snackbar.make(v, R.string.msg_refresh_no_info, Snackbar.LENGTH_SHORT)
                     .setAction("Action", null)
                     .show();
         }
