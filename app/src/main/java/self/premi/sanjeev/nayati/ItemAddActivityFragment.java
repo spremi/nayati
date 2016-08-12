@@ -108,7 +108,7 @@ public class ItemAddActivityFragment
 
         String useTrackNum = ((ItemAddActivity) getActivity()).getEditTrackNum();
 
-        if (useTrackNum != "") {
+        if (!useTrackNum.isEmpty()) {
             //
             // Fetch item from database
             //
