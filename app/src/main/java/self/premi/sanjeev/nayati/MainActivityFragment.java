@@ -117,6 +117,7 @@ public class MainActivityFragment extends Fragment {
 
         @Override
         protected void onPostExecute(Integer result) {
+            View v = getActivity().findViewById(R.id.layout_act_main);
 
             int resId;
 
@@ -133,7 +134,7 @@ public class MainActivityFragment extends Fragment {
                     resId = R.string.msg_db_failure;
             }
 
-            Snackbar.make(getView(), resId, Snackbar.LENGTH_SHORT)
+            Snackbar.make(v, resId, Snackbar.LENGTH_SHORT)
                     .setAction("Action", null).show();
 
             dbCheck = true;
