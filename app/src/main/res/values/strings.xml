@@ -63,6 +63,7 @@
 
     <string name="desc_postal_service">Postal service logo</string>
     <string name="desc_item_state">Item state</string>
+    <string name="desc_item_origin">Country of origin</string>
 
     <string name="desc_main_info">Application information</string>
     <string name="desc_main_logo">Application logo</string>

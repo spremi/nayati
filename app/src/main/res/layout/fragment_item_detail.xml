@@ -28,7 +28,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginBottom="8dp">
 
         <!-- Item Category -->
@@ -45,9 +45,9 @@
         <!-- Tracking number & Item name -->
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
             android:orientation="vertical"
-            android:layout_weight="0.9"
             android:layout_marginLeft="8dp">
 
             <TextView
@@ -76,28 +76,29 @@
             android:gravity="center_vertical|center_horizontal"
             android:contentDescription="@string/desc_postal_service" />
 
-        <!-- Country of origin & status -->
-        <LinearLayout
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:orientation="vertical">
+        <!-- Status -->
+        <ImageView
+            android:id="@+id/item_detail_status"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginLeft="4dp"
+            android:layout_gravity="center_vertical|right"
+            android:contentDescription="@string/desc_item_state" />
 
-            <TextView
-                android:id="@+id/item_detail_flag"
-                android:layout_width="match_parent"
-                android:layout_height="24dp"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:gravity="center_vertical|center_horizontal"
-                android:text="@string/blank_string" />
-
-            <ImageView
-                android:id="@+id/item_detail_status"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_gravity="center_vertical|center_horizontal"
-                android:contentDescription="@string/desc_item_state" />
-
-        </LinearLayout>
+        <!-- Country of origin -->
+        <ImageView
+            android:id="@+id/item_detail_flag"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginLeft="4dp"
+            android:gravity="center_vertical|right"
+            android:contentDescription="@string/desc_item_origin" />
 
     </LinearLayout>
 
