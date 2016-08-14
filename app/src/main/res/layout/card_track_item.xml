@@ -71,9 +71,9 @@
 
             <ImageView
                 android:id="@+id/item_list_text_track_state"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_margin="12dp"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_margin="10dp"
                 android:gravity="center_vertical|center_horizontal"
                 android:contentDescription="@string/desc_item_state" />
 
