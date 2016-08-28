@@ -157,7 +157,9 @@ public class IpsWeb {
                }
            }
         } catch (IOException e) {
-            e.printStackTrace();
+            if (BuildConfig.DEBUG) {
+                Log.e(LOG_TAG, "IO Exception");
+            }
         }
 
         return sb.toString();
