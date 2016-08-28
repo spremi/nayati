@@ -40,7 +40,7 @@
                 android:id="@+id/item_add_edit_track_num"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
+                android:inputType="textNoSuggestions"
                 android:hint="@string/item_add_hint_track_num" />
 
         </android.support.design.widget.TextInputLayout>
