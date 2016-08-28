@@ -60,7 +60,7 @@ public class ItemAddActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setLogo(R.drawable.ic_nayati);
 
-            if (editTrackNum != "") {
+            if (!editTrackNum.equals("")) {
                 actionBar.setTitle(R.string.title_activity_item_edit);
             }
         }
