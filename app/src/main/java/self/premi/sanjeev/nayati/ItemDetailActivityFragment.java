@@ -24,6 +24,7 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -589,7 +590,8 @@ public class ItemDetailActivityFragment extends Fragment {
             //
             // Date formats for conversion.
             //
-            SimpleDateFormat fmtInp = new SimpleDateFormat("M/d/yyyy h:m:s aa", Locale.US);
+            SimpleDateFormat fmtIn1 = new SimpleDateFormat("M/d/yyyy", Locale.US);
+            SimpleDateFormat fmtIn2 = new SimpleDateFormat("M/d/yyyy h:m:s aa", Locale.US);
             SimpleDateFormat fmtOut = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
 
             String row;
@@ -629,17 +631,30 @@ public class ItemDetailActivityFragment extends Fragment {
                     (row.indexOf("Local Date and Time") == -1)) {
                     String[] parts = row.split("\\|");
 
+                    String rowDate = parts[1];
+
                     //
                     // Convert date format
                     //
                     try {
-                        parts[1] = fmtOut.format(fmtInp.parse(parts[1]));
+
+                        if (rowDate.matches("^\\d{1,2}\\/\\d{1,2}\\/\\d{2,4}$")) {
+                            rowDate = fmtOut.format(fmtIn1.parse(rowDate));
+                        } else {
+                            rowDate = fmtOut.format(fmtIn2.parse(rowDate));
+                        }
                     }
                     catch (ParseException e) {
                     }
 
-                    parseItems.add(new TrackInfo(parts[1], parts[2], parts[3], parts[4],
-                                                    parts[6], parts[5], item.getId()));
+                    String rowCountry   = Html.fromHtml(parts[2]).toString();
+                    String rowCurrLoc   = Html.fromHtml(parts[3]).toString();
+                    String rowEvent     = Html.fromHtml(parts[4]).toString();
+                    String rowMailCat   = Html.fromHtml(parts[5]).toString();
+                    String rowNextLoc   = Html.fromHtml(parts[6]).toString();
+
+                    parseItems.add(new TrackInfo(rowDate, rowCountry, rowCurrLoc, rowEvent,
+                                            rowNextLoc, rowMailCat, item.getId()));
                 }
 
                 pos = end + rowEnd.length();
